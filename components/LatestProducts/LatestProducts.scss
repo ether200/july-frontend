@@ -1,0 +1,18 @@
+.latestProducts {
+  padding: $padding-big-screen;
+  background-color: $color-white-3;
+  text-align: center;
+  cursor: pointer;
+
+  @include MediaQuery(700px) {
+    padding: 3rem $padding-ms-screen;
+  }
+
+  &__card {
+    box-shadow: $light-shadow;
+  }
+
+  h1 {
+    margin-bottom: 3rem;
+  }
+}

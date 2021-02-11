@@ -1,0 +1,43 @@
+.payment {
+  padding: 2rem;
+  background-color: $color-white-2;
+  box-shadow: $light-shadow;
+
+  a {
+    margin: 2rem;
+    display: block;
+    text-align: center;
+    color: $color-gray;
+  }
+
+  &__data {
+    margin: 2rem auto;
+    width: 60%;
+
+    @include MediaQuery(1000px) {
+      width: 80%;
+    }
+
+    @include MediaQuery(650px) {
+      width: 100%;
+    }
+
+    &__form {
+      .StripeElement {
+        padding: 1rem;
+        box-shadow: $light-shadow;
+        border: 1px solid $color-gray-3;
+      }
+
+      &__btn-container {
+        margin-top: 2rem;
+        display: grid;
+        place-content: center;
+
+        button {
+          margin-top: 1.5rem;
+        }
+      }
+    }
+  }
+}

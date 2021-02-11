@@ -1,0 +1,48 @@
+.about {
+  &__image {
+    height: calc(100vh - 8.1rem);
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  @include MediaQuery(990px) {
+    height: calc(100vh - 17.5rem);
+  }
+
+  @include MediaQuery(550px) {
+    height: calc(100vh - 18.9rem);
+  }
+
+  &__content {
+    padding: $padding-big-screen;
+    background-color: $primary;
+
+    @include MediaQuery(700px) {
+      padding: $padding-big-screen $padding-ms-screen;
+    }
+
+    &__wrapper {
+      margin: 2rem 0 0 0;
+      padding: 1rem;
+      background-color: $color-white-3;
+      box-shadow: $dark-shadow;
+
+      h2 {
+        text-align: center;
+        font-weight: bold;
+        color: $primary;
+      }
+
+      &__text {
+        padding: 1rem;
+        font-family: $font-secondary;
+
+        p {
+          line-height: 2.5rem;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

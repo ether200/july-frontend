@@ -1,0 +1,37 @@
+.listGrid {
+  padding: $padding-big-screen;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 30rem);
+  gap: 2rem;
+  justify-content: center;
+
+  @include MediaQuery(700px) {
+    padding: $padding-big-screen $padding-ms-screen;
+  }
+
+  a {
+    color: $color-gray;
+  }
+
+  &__card {
+    padding: 1.5rem;
+    box-shadow: $light-shadow;
+
+    &__content {
+      text-align: center;
+
+      &__title {
+        max-height: 4.5rem;
+        overflow: hidden;
+        margin: 1rem 0;
+        h4 {
+          font-weight: bold;
+        }
+      }
+
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}

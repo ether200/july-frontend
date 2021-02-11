@@ -1,0 +1,23 @@
+@import "./variables.scss";
+@import "./mixins";
+@import "./btn.scss";
+@import "./form.scss";
+
+// components
+@import "../components/Navbar/Navbar.scss";
+@import "../components/Hero/Hero.scss";
+@import "../components/LatestProducts/LatestProducts.scss";
+@import "../components/Services/Services.scss";
+@import "../components/Footer/footer.scss";
+@import "../components/ListBooks/listbooks.scss";
+@import "../components/BookInfo/BookInfo.scss";
+@import "../components/Auth/auth.scss";
+@import "../components/Modal/modal.scss";
+@import "../components/AccountData/AccountData.scss";
+@import "../components/AccountData/Address/Address.scss";
+@import "../components/Cart/Payment/Payment.scss";
+@import "../components/Cart/Cart.scss";
+@import "../components/Orders/Orders.scss";
+@import "../components/Empty/Empty.scss";
+@import "../components/Pagination/Pagination.scss";
+@import "../components/About/About.scss";

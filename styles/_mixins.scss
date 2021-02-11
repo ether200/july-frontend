@@ -1,0 +1,9 @@
+@mixin size-btn($w) {
+  width: $w;
+}
+
+@mixin MediaQuery($BP) {
+  @media screen and (max-width: $BP) {
+    @content;
+  }
+}

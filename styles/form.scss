@@ -1,0 +1,59 @@
+.form {
+  padding: 4rem 3rem;
+  background-color: $color-white-2;
+  border-radius: 0.5rem;
+  width: 40rem;
+  margin: 3rem auto;
+  box-shadow: $dark-shadow;
+
+  @include MediaQuery(425px) {
+    width: 31rem;
+    padding: 3rem $padding-ms-screen;
+  }
+
+  &--account {
+    width: 100%;
+    margin: 0;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  &__control {
+    margin-bottom: 2rem;
+    margin: 2rem auto;
+
+    label {
+      color: $color-gray;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      font-size: inherit;
+      outline: none;
+    }
+
+    input:focus {
+      border: 2px solid $primary;
+    }
+
+    span {
+      color: red;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__action {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__link {
+      color: $color-gray;
+    }
+  }
+}

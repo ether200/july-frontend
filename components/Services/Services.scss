@@ -1,0 +1,33 @@
+.services {
+  background-color: $primary;
+  padding: $padding-big-screen;
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 3rem;
+
+  @include MediaQuery(700px) {
+    padding: $padding-big-screen $padding-ms-screen;
+  }
+
+  @include MediaQuery(430px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  &__card {
+    width: 100%;
+    display: grid;
+    gap: 2rem;
+    place-content: center;
+    box-shadow: $dark-shadow;
+    padding: 1.5rem;
+    text-align: center;
+    background-color: $color-white;
+    height: 30rem;
+
+    svg {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}

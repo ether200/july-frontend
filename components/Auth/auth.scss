@@ -1,0 +1,12 @@
+.center {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  background-color: $color-white-2;
+  padding: $padding-big-screen;
+
+  @include MediaQuery(700px) {
+    padding: $padding-big-screen $padding-ms-screen;
+  }
+}
