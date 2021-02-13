@@ -10,6 +10,7 @@ import AddressForm from "../components/AccountData/AddressForm";
 import Modal from "../components/Modal";
 import Address from "../components/AccountData/Address";
 import UserInfo from "../components/AccountData/UserInfo";
+import Seo from "../components/SEO";
 
 type Props = {
   user: UserI;
@@ -39,6 +40,7 @@ const MyAccount: React.FC<Props> = ({ user, address }) => {
 
   return (
     <>
+      <Seo title="July | My Account" />
       <UserInfo userData={userData} mutateUser={mutateUser} />
       <Address addressData={addressData} setIsModalOpen={setIsModalOpen} />
 

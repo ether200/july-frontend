@@ -4,6 +4,7 @@ import { getTokenServerSide, getIdUser, isArrayNotEmpty } from "../utils";
 import { OrderI } from "../intefaces";
 import Orders from "../components/Orders";
 import Empty from "../components/Empty";
+import Seo from "../components/SEO";
 
 export type Props = {
   orders: Array<OrderI>;
@@ -12,10 +13,15 @@ export type Props = {
 const OrdersPage: React.FC<Props> = ({ orders }) => {
   const ordersExist = isArrayNotEmpty(orders);
 
-  return ordersExist ? (
-    <Orders orders={orders} />
-  ) : (
-    <Empty message="You haven't made any order yet" />
+  return (
+    <>
+      <Seo title="July | My Orders" />
+      {ordersExist ? (
+        <Orders orders={orders} />
+      ) : (
+        <Empty message="You haven't made any order yet" />
+      )}
+    </>
   );
 };
 

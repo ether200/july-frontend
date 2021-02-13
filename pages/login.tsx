@@ -1,9 +1,15 @@
 import { getTokenServerSide } from "../utils";
 import { GetServerSideProps } from "next";
 import LoginForm from "../components/Auth/LoginForm";
+import Seo from "../components/SEO";
 
 export const login = () => {
-  return <LoginForm />;
+  return (
+    <>
+      <Seo title="July | Login" />
+      <LoginForm />
+    </>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

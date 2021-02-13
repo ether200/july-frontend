@@ -1,0 +1,615 @@
+warning: LF will be replaced by CRLF in pages/index.tsx.
+The file will have its original line endings in your working directory
+[1mdiff --git a/components/AccountData/UserInfo/index.tsx b/components/AccountData/UserInfo/index.tsx[m
+[1mindex 40d62f8..5965814 100644[m
+[1m--- a/components/AccountData/UserInfo/index.tsx[m
+[1m+++ b/components/AccountData/UserInfo/index.tsx[m
+[36m@@ -7,6 +7,8 @@[m [mtype Props = {[m
+ };[m
+ [m
+ const UserInfo: React.FC<Props> = ({ userData, mutateUser }) => {[m
+[32m+[m[32m  const dateFormatted = userData.createdAt.slice(0, 10);[m
+[32m+[m
+   return ([m
+     <div className="myAccount">[m
+       <div className="myAccount__data">[m
+[36m@@ -15,7 +17,7 @@[m [mconst UserInfo: React.FC<Props> = ({ userData, mutateUser }) => {[m
+         <p>Name: {userData.name}</p>[m
+         <p>Last name: {userData.lastName}</p>[m
+         <p>Email: {userData.email}</p>[m
+[31m-        <p>Registered on: {userData.createdAt}</p>[m
+[32m+[m[32m        <p>Registered on: {dateFormatted}</p>[m
+       </div>[m
+       <EditUserForm userData={userData} mutateUser={mutateUser} />[m
+     </div>[m
+[1mdiff --git a/components/BookInfo/index.tsx b/components/BookInfo/index.tsx[m
+[1mindex 5f8a9ca..6736296 100644[m
+[1m--- a/components/BookInfo/index.tsx[m
+[1m+++ b/components/BookInfo/index.tsx[m
+[36m@@ -8,9 +8,16 @@[m [mimport { FiShoppingCart, FiHeart, FiCheck } from "react-icons/fi";[m
+ import { isProductInCart, addProductsCart } from "../../axios/cartApi";[m
+ import { deleteFavoriteBook, addFavoriteBook } from "../../axios/favoriteApi";[m
+ import { isArrayNotEmpty } from "../../utils";[m
+[31m-import { FavoriteBookI } from "../../intefaces";[m
+[32m+[m[32mimport { FavoriteBookI, BookI } from "../../intefaces";[m
+ [m
+[31m-const BookInfo = ({ book, favoriteBooks, userId, token }) => {[m
+[32m+[m[32mtype Props = {[m
+[32m+[m[32m  book: BookI;[m
+[32m+[m[32m  favoriteBooks: FavoriteBookI[];[m
+[32m+[m[32m  userId: string;[m
+[32m+[m[32m  token: string;[m
+[32m+[m[32m};[m
+[32m+[m
+[32m+[m[32mconst BookInfo: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {[m
+   const router = useRouter();[m
+   const { data: favBooks, isValidating, mutate } = useSWR<FavoriteBookI[]>([m
+     token ? [`/favorites?user=${userId}`, token] : null,[m
+[1mdiff --git a/components/Cart/Payment/PaymentForm/index.tsx b/components/Cart/Payment/PaymentForm/index.tsx[m
+[1mindex 09224fa..2d7b137 100644[m
+[1m--- a/components/Cart/Payment/PaymentForm/index.tsx[m
+[1m+++ b/components/Cart/Payment/PaymentForm/index.tsx[m
+[36m@@ -1,17 +1,28 @@[m
+ import { useState } from "react";[m
+ import { useRouter } from "next/router";[m
+[31m-import { Props } from "../../";[m
+ import { paymentCart, emptyCart } from "../../../../axios/cartApi";[m
+ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";[m
+[32m+[m[32mimport { BookI, AddressI } from "../../../../intefaces";[m
+ [m
+[31m-const PaymentForm: React.FC<Props> = ({ addressInfo, cartItems, userId }) => {[m
+[32m+[m[32mtype Props = {[m
+[32m+[m[32m  cartItems: Array<BookI> | null;[m
+[32m+[m[32m  addressInfo: Array<AddressI> | null;[m
+[32m+[m[32m  userId: string | null;[m
+[32m+[m[32m  totalPayment: number;[m
+[32m+[m[32m};[m
+[32m+[m
+[32m+[m[32mconst PaymentForm: React.FC<Props> = ({[m
+[32m+[m[32m  addressInfo,[m
+[32m+[m[32m  cartItems,[m
+[32m+[m[32m  userId,[m
+[32m+[m[32m  totalPayment,[m
+[32m+[m[32m}) => {[m
+   const router = useRouter();[m
+   const stripe = useStripe();[m
+   const elements = useElements();[m
+   const [loading, setLoading] = useState<boolean>(false);[m
+   const [stripeError, setStripeError] = useState<null | string>(null);[m
+   const products = cartItems.map((item) => item.id);[m
+[31m-  const totalPayment = cartItems.reduce((acc, item) => acc + item.price, 0);[m
+ [m
+   const handleSubmit = async (event) => {[m
+     event.preventDefault();[m
+[1mdiff --git a/components/Cart/Payment/index.tsx b/components/Cart/Payment/index.tsx[m
+[1mindex 2d1e353..e122152 100644[m
+[1m--- a/components/Cart/Payment/index.tsx[m
+[1m+++ b/components/Cart/Payment/index.tsx[m
+[36m@@ -1,8 +1,8 @@[m
+ import { Elements } from "@stripe/react-stripe-js";[m
+ import { loadStripe } from "@stripe/stripe-js";[m
+ import { isArrayNotEmpty } from "../../../utils";[m
+[32m+[m[32mimport { BookI, AddressI } from "../../../intefaces";[m
+ import Link from "next/link";[m
+[31m-import { Props } from "../../Cart";[m
+ import PaymentForm from "./PaymentForm";[m
+ [m
+ const STRIPE_TOKEN = process.env.NEXT_PUBLIC_STRAPI_KEY;[m
+[36m@@ -11,7 +11,19 @@[m [mconst stripePromise = loadStripe(STRIPE_TOKEN, {[m
+   locale: "en",[m
+ });[m
+ [m
+[31m-const Payment: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {[m
+[32m+[m[32mtype Props = {[m
+[32m+[m[32m  cartItems: Array<BookI> | null;[m
+[32m+[m[32m  addressInfo: Array<AddressI> | null;[m
+[32m+[m[32m  userId: string | null;[m
+[32m+[m[32m  totalPayment: number;[m
+[32m+[m[32m};[m
+[32m+[m
+[32m+[m[32mconst Payment: React.FC<Props> = ({[m
+[32m+[m[32m  cartItems,[m
+[32m+[m[32m  addressInfo,[m
+[32m+[m[32m  userId,[m
+[32m+[m[32m  totalPayment,[m
+[32m+[m[32m}) => {[m
+   const addressExist = isArrayNotEmpty(addressInfo);[m
+ [m
+   if (!addressExist) {[m
+[36m@@ -34,6 +46,7 @@[m [mconst Payment: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {[m
+             cartItems={cartItems}[m
+             addressInfo={addressInfo}[m
+             userId={userId}[m
+[32m+[m[32m            totalPayment={totalPayment}[m
+           />[m
+         </Elements>[m
+       </div>[m
+[1mdiff --git a/components/Cart/index.tsx b/components/Cart/index.tsx[m
+[1mindex a8a9f14..f63d32c 100644[m
+[1m--- a/components/Cart/index.tsx[m
+[1m+++ b/components/Cart/index.tsx[m
+[36m@@ -9,7 +9,9 @@[m [mexport type Props = {[m
+ };[m
+ [m
+ const Cart: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {[m
+[31m-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);[m
+[32m+[m[32m  const totalPrice = cartItems[m
+[32m+[m[32m    .reduce((acc, item) => acc + item.price, 0)[m
+[32m+[m[32m    .toFixed(2);[m
+   return ([m
+     <div className="cart-container">[m
+       <h2>Your cart</h2>[m
+[36m@@ -30,6 +32,7 @@[m [mconst Cart: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {[m
+           cartItems={cartItems}[m
+           addressInfo={addressInfo}[m
+           userId={userId}[m
+[32m+[m[32m          totalPayment={+totalPrice}[m
+         />[m
+       )}[m
+     </div>[m
+[1mdiff --git a/components/Footer/index.tsx b/components/Footer/index.tsx[m
+[1mindex 39541be..cac6796 100644[m
+[1m--- a/components/Footer/index.tsx[m
+[1m+++ b/components/Footer/index.tsx[m
+[36m@@ -1,9 +1,10 @@[m
+ import React from "react";[m
+ [m
+ const Footer = () => {[m
+[32m+[m[32m  const currentYear = new Date().getFullYear();[m
+   return ([m
+     <div className="footer">[m
+[31m-      <p>Copyright &copy; July. All rights reserved.</p>[m
+[32m+[m[32m      <p>Copyright &copy; {currentYear} July. All rights reserved.</p>[m
+     </div>[m
+   );[m
+ };[m
+[1mdiff --git a/components/LatestProducts/index.tsx b/components/LatestProducts/index.tsx[m
+[1mindex c092d3a..697df10 100644[m
+[1m--- a/components/LatestProducts/index.tsx[m
+[1m+++ b/components/LatestProducts/index.tsx[m
+[36m@@ -41,7 +41,7 @@[m [mconst LatestProducts: React.FC<Props> = ({ latestBooks }) => {[m
+ [m
+   return ([m
+     <div className="latestProducts">[m
+[31m-      <h1>Newest Books</h1>[m
+[32m+[m[32m      <h1>Latest Books</h1>[m
+       <Slider {...settings}>[m
+         {latestBooks.map((book) => ([m
+           <Link href={`/books/${book.url}`} key={book.id}>[m
+[1mdiff --git a/components/Navbar/Navbar.scss b/components/Navbar/Navbar.scss[m
+[1mindex e96e198..c7beb54 100644[m
+[1m--- a/components/Navbar/Navbar.scss[m
+[1m+++ b/components/Navbar/Navbar.scss[m
+[36m@@ -65,10 +65,6 @@[m
+               display: none;[m
+             }[m
+           }[m
+[31m-[m
+[31m-          &:hover {[m
+[31m-            color: $color-gray-2;[m
+[31m-          }[m
+         }[m
+       }[m
+     }[m
+[36m@@ -100,9 +96,6 @@[m
+         color: $color-white;[m
+         font-weight: 500;[m
+         cursor: pointer;[m
+[31m-        &:hover {[m
+[31m-          color: $color-gray-2;[m
+[31m-        }[m
+       }[m
+     }[m
+ [m
+[36m@@ -125,10 +118,6 @@[m
+         font-weight: 500;[m
+         font-family: $font-secondary;[m
+         transition: all 0.2s ease-in-out;[m
+[31m-[m
+[31m-        &:hover {[m
+[31m-          color: $color-gray-2;[m
+[31m-        }[m
+       }[m
+ [m
+       &__dropdown {[m
+[1mdiff --git a/components/Orders/OrderCard/index.tsx b/components/Orders/OrderCard/index.tsx[m
+[1mindex 4b093c2..50cc6d3 100644[m
+[1m--- a/components/Orders/OrderCard/index.tsx[m
+[1m+++ b/components/Orders/OrderCard/index.tsx[m
+[36m@@ -24,7 +24,7 @@[m [mconst OrderCard: React.FC<Props> = ({ order }) => {[m
+         <ul>[m
+           {order.books.map((book) => ([m
+             <li key={book.id}>[m
+[31m-              <Link href={`/${book.url}`}>[m
+[32m+[m[32m              <Link href={`/books/${book.url}`}>[m
+                 <a>{book.title}</a>[m
+               </Link>[m
+             </li>[m
+[1mdiff --git a/components/Orders/Orders.scss b/components/Orders/Orders.scss[m
+[1mindex 2cac09a..70a7188 100644[m
+[1m--- a/components/Orders/Orders.scss[m
+[1m+++ b/components/Orders/Orders.scss[m
+[36m@@ -45,10 +45,7 @@[m
+           a {[m
+             color: $color-white;[m
+             font-family: $font-secondary;[m
+[31m-[m
+[31m-            &:hover {[m
+[31m-              color: $primary;[m
+[31m-            }[m
+[32m+[m[32m            border-bottom: 1px solid $color-white;[m
+           }[m
+         }[m
+       }[m
+[1mdiff --git a/pages/about.tsx b/pages/about.tsx[m
+[1mindex a28df8d..41230ac 100644[m
+[1m--- a/pages/about.tsx[m
+[1m+++ b/pages/about.tsx[m
+[36m@@ -1,13 +1,19 @@[m
+ import { getAboutInfo } from "../axios/aboutApi";[m
+ import { AboutI } from "../intefaces";[m
+ import About from "../components/About";[m
+[32m+[m[32mimport Seo from "../components/SEO";[m
+ [m
+ type Props = {[m
+   content: AboutI;[m
+ };[m
+ [m
+ const AboutPage: React.FC<Props> = ({ content }) => {[m
+[31m-  return <About text={content?.text} />;[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo title="July | About" />[m
+[32m+[m[32m      <About text={content?.text} />[m
+[32m+[m[32m    </>[m
+[32m+[m[32m  );[m
+ };[m
+ [m
+ export const getStaticProps = async () => {[m
+[1mdiff --git a/pages/books.tsx b/pages/books.tsx[m
+[1mindex 90fc0d7..d4dadd5 100644[m
+[1m--- a/pages/books.tsx[m
+[1m+++ b/pages/books.tsx[m
+[36m@@ -4,6 +4,7 @@[m [mimport { getBooksWithLimit, getBooksCount } from "../axios/bookApi";[m
+ import { isArrayNotEmpty } from "../utils";[m
+ import ListBooks from "../components/ListBooks";[m
+ import Empty from "../components/Empty";[m
+[32m+[m[32mimport Seo from "../components/SEO";[m
+ [m
+ type Props = {[m
+   books: Array<BookI>;[m
+[36m@@ -14,10 +15,15 @@[m [mtype Props = {[m
+ const Books: React.FC<Props> = ({ books, page, numberOfBooks }) => {[m
+   const booksExist = isArrayNotEmpty(books);[m
+ [m
+[31m-  return booksExist ? ([m
+[31m-    <ListBooks books={books} page={page} numberOfBooks={numberOfBooks} />[m
+[31m-  ) : ([m
+[31m-    <Empty message="Something went wrong" />[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo title="July | Store" />[m
+[32m+[m[32m      {booksExist ? ([m
+[32m+[m[32m        <ListBooks books={books} page={page} numberOfBooks={numberOfBooks} />[m
+[32m+[m[32m      ) : ([m
+[32m+[m[32m        <Empty message="Something went wrong" />[m
+[32m+[m[32m      )}[m
+[32m+[m[32m    </>[m
+   );[m
+ };[m
+ [m
+[1mdiff --git a/pages/books/[book].tsx b/pages/books/[book].tsx[m
+[1mindex a36472c..a295800 100644[m
+[1m--- a/pages/books/[book].tsx[m
+[1m+++ b/pages/books/[book].tsx[m
+[36m@@ -4,19 +4,31 @@[m [mimport { getFavoriteBooks } from "../../axios/favoriteApi";[m
+ import { GetServerSideProps } from "next";[m
+ import BookInfo from "../../components/BookInfo";[m
+ import Empty from "../../components/Empty";[m
+[32m+[m[32mimport Seo from "../../components/SEO";[m
+[32m+[m[32mimport { BookI, FavoriteBookI } from "../../intefaces";[m
+ [m
+[31m-const BookPage = ({ book, favoriteBooks, userId, token }) => {[m
+[32m+[m[32mtype Props = {[m
+[32m+[m[32m  book: BookI;[m
+[32m+[m[32m  favoriteBooks: FavoriteBookI[];[m
+[32m+[m[32m  userId: string;[m
+[32m+[m[32m  token: string;[m
+[32m+[m[32m};[m
+[32m+[m
+[32m+[m[32mconst BookPage: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {[m
+   if (!book) {[m
+     return <Empty message="404 | Book not found" />;[m
+   }[m
+ [m
+   return ([m
+[31m-    <BookInfo[m
+[31m-      book={book}[m
+[31m-      favoriteBooks={favoriteBooks}[m
+[31m-      userId={userId}[m
+[31m-      token={token}[m
+[31m-    />[m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo title={`July | ${book.title}`} />[m
+[32m+[m[32m      <BookInfo[m
+[32m+[m[32m        book={book}[m
+[32m+[m[32m        favoriteBooks={favoriteBooks}[m
+[32m+[m[32m        userId={userId}[m
+[32m+[m[32m        token={token}[m
+[32m+[m[32m      />[m
+[32m+[m[32m    </>[m
+   );[m
+ };[m
+ [m
+[1mdiff --git a/pages/cart.tsx b/pages/cart.tsx[m
+[1mindex f638017..53bd2f1 100644[m
+[1m--- a/pages/cart.tsx[m
+[1m+++ b/pages/cart.tsx[m
+[36m@@ -5,6 +5,7 @@[m [mimport { getAddress } from "../axios/addressApi";[m
+ import { BookI, AddressI } from "../intefaces";[m
+ import Cart from "../components/Cart";[m
+ import Empty from "../components/Empty";[m
+[32m+[m[32mimport Seo from "../components/SEO";[m
+ [m
+ export type Props = {[m
+   cartItems: Array<BookI> | null;[m
+[36m@@ -13,10 +14,15 @@[m [mexport type Props = {[m
+ };[m
+ [m
+ const CartPage: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {[m
+[31m-  return cartItems ? ([m
+[31m-    <Cart cartItems={cartItems} addressInfo={addressInfo} userId={userId} />[m
+[31m-  ) : ([m
+[31m-    <Empty message="Your cart is empty" />[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo title="July | My Cart" />[m
+[32m+[m[32m      {cartItems ? ([m
+[32m+[m[32m        <Cart cartItems={cartItems} addressInfo={addressInfo} userId={userId} />[m
+[32m+[m[32m      ) : ([m
+[32m+[m[32m        <Empty message="Your cart is empty" />[m
+[32m+[m[32m      )}[m
+[32m+[m[32m    </>[m
+   );[m
+ };[m
+ [m
+[1mdiff --git a/pages/categories/[category].tsx b/pages/categories/[category].tsx[m
+[1mindex 64a6afe..ca714bb 100644[m
+[1m--- a/pages/categories/[category].tsx[m
+[1m+++ b/pages/categories/[category].tsx[m
+[36m@@ -1,24 +1,40 @@[m
+ import { GetServerSideProps } from "next";[m
+ import { getBooksByCategory } from "../../axios/bookApi";[m
+ import { isArrayNotEmpty } from "../../utils";[m
+[32m+[m[32mimport { BookI } from "../../intefaces";[m
+ import ListBooks from "../../components/ListBooks";[m
+ import Empty from "../../components/Empty";[m
+[32m+[m[32mimport Seo from "../../components/SEO";[m
+ [m
+[31m-const Category = ({ books }) => {[m
+[31m-  const booksExist = isArrayNotEmpty(books);[m
+[32m+[m[32mtype Props = {[m
+[32m+[m[32m  books: BookI[];[m
+[32m+[m[32m  category: string;[m
+[32m+[m[32m};[m
+ [m
+[31m-  return booksExist ? ([m
+[31m-    <ListBooks books={books} />[m
+[31m-  ) : ([m
+[31m-    <Empty message="No books found for such category" />[m
+[32m+[m[32mconst Category: React.FC<Props> = ({ books, category }) => {[m
+[32m+[m[32m  const booksExist = isArrayNotEmpty(books);[m
+[32m+[m[32m  const categoryWithSpaces = category.split("-").join(" ");[m
+[32m+[m[32m  const categoryCapitalized =[m
+[32m+[m[32m    categoryWithSpaces.charAt(0).toUpperCase() + categoryWithSpaces.slice(1);[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo title={`July | ${categoryCapitalized}`} />[m
+[32m+[m[32m      {booksExist ? ([m
+[32m+[m[32m        <ListBooks books={books} />[m
+[32m+[m[32m      ) : ([m
+[32m+[m[32m        <Empty message="No books found for such category" />[m
+[32m+[m[32m      )}[m
+[32m+[m[32m    </>[m
+   );[m
+ };[m
+ [m
+ export const getServerSideProps: GetServerSideProps = async (context) => {[m
+[31m-  const books = await getBooksByCategory(context.query.category);[m
+[32m+[m[32m  const category = context.query.category;[m
+[32m+[m[32m  const books = await getBooksByCategory(category);[m
+   return {[m
+     props: {[m
+       books,[m
+[32m+[m[32m      category,[m
+     },[m
+   };[m
+ };[m
+[1mdiff --git a/pages/index.tsx b/pages/index.tsx[m
+[1mindex 79a8254..1d96a11 100644[m
+[1m--- a/pages/index.tsx[m
+[1m+++ b/pages/index.tsx[m
+[36m@@ -1,24 +1,20 @@[m
+ import { GetStaticProps } from "next";[m
+ import { getLatestBooks } from "../axios/bookApi";[m
+[31m-import Head from "next/head";[m
+[32m+[m[32mimport Seo from "../components/SEO";[m
+ import Hero from "../components/Hero";[m
+ import LatestProducts from "../components/LatestProducts";[m
+ import Services from "../components/Services";[m
+ import { BookI } from "../intefaces";[m
+ [m
+[31m-import { getBooksCount } from "../axios/bookApi";[m
+[31m-[m
+ type Props = {[m
+   latestBooks: BookI[];[m
+ };[m
+ [m
+ const Home: React.FC<Props> = ({ latestBooks }) => {[m
+[32m+[m[41m  [m
+   return ([m
+     <div className="container">[m
+[31m-      <Head>[m
+[31m-        <title>Create Next App</title>[m
+[31m-        <link rel="icon" href="/favicon.ico" />[m
+[31m-      </Head>[m
+[32m+[m[32m      <Seo />[m
+       <Hero />[m
+       <LatestProducts latestBooks={latestBooks} />[m
+       <Services />[m
+[1mdiff --git a/pages/login.tsx b/pages/login.tsx[m
+[1mindex 6790b25..4ca0933 100644[m
+[1m--- a/pages/login.tsx[m
+[1m+++ b/pages/login.tsx[m
+[36m@@ -1,9 +1,15 @@[m
+ import { getTokenServerSide } from "../utils";[m
+ import { GetServerSideProps } from "next";[m
+ import LoginForm from "../components/Auth/LoginForm";[m
+[32m+[m[32mimport Seo from "../components/SEO";[m
+ [m
+ export const login = () => {[m
+[31m-  return <LoginForm />;[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo title="July | Login" />[m
+[32m+[m[32m      <LoginForm />[m
+[32m+[m[32m    </>[m
+[32m+[m[32m  );[m
+ };[m
+ [m
+ export const getServerSideProps: GetServerSideProps = async (context) => {[m
+[1mdiff --git a/pages/my-account.tsx b/pages/my-account.tsx[m
+[1mindex 3affe09..706d04b 100644[m
+[1m--- a/pages/my-account.tsx[m
+[1m+++ b/pages/my-account.tsx[m
+[36m@@ -10,6 +10,7 @@[m [mimport AddressForm from "../components/AccountData/AddressForm";[m
+ import Modal from "../components/Modal";[m
+ import Address from "../components/AccountData/Address";[m
+ import UserInfo from "../components/AccountData/UserInfo";[m
+[32m+[m[32mimport Seo from "../components/SEO";[m
+ [m
+ type Props = {[m
+   user: UserI;[m
+[36m@@ -39,6 +40,7 @@[m [mconst MyAccount: React.FC<Props> = ({ user, address }) => {[m
+ [m
+   return ([m
+     <>[m
+[32m+[m[32m      <Seo title="July | My Account" />[m
+       <UserInfo userData={userData} mutateUser={mutateUser} />[m
+       <Address addressData={addressData} setIsModalOpen={setIsModalOpen} />[m
+ [m
+[1mdiff --git a/pages/orders.tsx b/pages/orders.tsx[m
+[1mindex f8ad0b5..3b1f63e 100644[m
+[1m--- a/pages/orders.tsx[m
+[1m+++ b/pages/orders.tsx[m
+[36m@@ -4,6 +4,7 @@[m [mimport { getTokenServerSide, getIdUser, isArrayNotEmpty } from "../utils";[m
+ import { OrderI } from "../intefaces";[m
+ import Orders from "../components/Orders";[m
+ import Empty from "../components/Empty";[m
+[32m+[m[32mimport Seo from "../components/SEO";[m
+ [m
+ export type Props = {[m
+   orders: Array<OrderI>;[m
+[36m@@ -12,10 +13,15 @@[m [mexport type Props = {[m
+ const OrdersPage: React.FC<Props> = ({ orders }) => {[m
+   const ordersExist = isArrayNotEmpty(orders);[m
+ [m
+[31m-  return ordersExist ? ([m
+[31m-    <Orders orders={orders} />[m
+[31m-  ) : ([m
+[31m-    <Empty message="You haven't made any order yet" />[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo title="July | My Orders" />[m
+[32m+[m[32m      {ordersExist ? ([m
+[32m+[m[32m        <Orders orders={orders} />[m
+[32m+[m[32m      ) : ([m
+[32m+[m[32m        <Empty message="You haven't made any order yet" />[m
+[32m+[m[32m      )}[m
+[32m+[m[32m    </>[m
+   );[m
+ };[m
+ [m
+[1mdiff --git a/pages/register.tsx b/pages/register.tsx[m
+[1mindex 4cf813d..b1b8c82 100644[m
+[1m--- a/pages/register.tsx[m
+[1m+++ b/pages/register.tsx[m
+[36m@@ -1,9 +1,15 @@[m
+ import { getTokenServerSide } from "../utils";[m
+ import { GetServerSideProps } from "next";[m
+ import RegisterForm from "../components/Auth/RegisterForm";[m
+[32m+[m[32mimport Seo from "../components/SEO";[m
+ [m
+ const register = () => {[m
+[31m-  return <RegisterForm />;[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo title="July | Register" />[m
+[32m+[m[32m      <RegisterForm />;[m
+[32m+[m[32m    </>[m
+[32m+[m[32m  );[m
+ };[m
+ [m
+ export const getServerSideProps: GetServerSideProps = async (context) => {[m
+[1mdiff --git a/pages/search.tsx b/pages/search.tsx[m
+[1mindex ffdc6e5..3d4b249 100644[m
+[1m--- a/pages/search.tsx[m
+[1m+++ b/pages/search.tsx[m
+[36m@@ -4,6 +4,7 @@[m [mimport { searchForBooks } from "../axios/bookApi";[m
+ import { isArrayNotEmpty } from "../utils";[m
+ import ListBooks from "../components/ListBooks";[m
+ import Empty from "../components/Empty";[m
+[32m+[m[32mimport Seo from "../components/SEO";[m
+ [m
+ type Props = {[m
+   books: BookI[];[m
+[36m@@ -13,9 +14,15 @@[m [mconst search: React.FC<Props> = ({ books }) => {[m
+   const booksExist = isArrayNotEmpty(books);[m
+ [m
+   return booksExist ? ([m
+[31m-    <ListBooks books={books} />[m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo />[m
+[32m+[m[32m      <ListBooks books={books} />[m
+[32m+[m[32m    </>[m
+   ) : ([m
+[31m-    <Empty message="NO RESULTS" />[m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo />[m
+[32m+[m[32m      <Empty message="NO RESULTS" />[m
+[32m+[m[32m    </>[m
+   );[m
+ };[m
+ [m
+[1mdiff --git a/pages/wishlist.tsx b/pages/wishlist.tsx[m
+[1mindex d569b93..a7bb3ba 100644[m
+[1m--- a/pages/wishlist.tsx[m
+[1m+++ b/pages/wishlist.tsx[m
+[36m@@ -9,6 +9,7 @@[m [mimport { getFavoriteBooks, favBooksFetcher } from "../axios/favoriteApi";[m
+ import { FavoriteBookI } from "../intefaces";[m
+ import ListBooks from "../components/ListBooks";[m
+ import Empty from "../components/Empty";[m
+[32m+[m[32mimport Seo from "../components/SEO";[m
+ [m
+ type Props = {[m
+   favoriteBooks: Array<FavoriteBookI>;[m
+[36m@@ -28,10 +29,15 @@[m [mconst Wishlist: React.FC<Props> = ({ favoriteBooks, userId }) => {[m
+   const favoriteBooksExist = isArrayNotEmpty(favoriteBooks);[m
+   const books = favBooks.map((book) => book.book);[m
+ [m
+[31m-  return favoriteBooksExist ? ([m
+[31m-    <ListBooks books={books} />[m
+[31m-  ) : ([m
+[31m-    <Empty message="Your wish list is empty" />[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Seo title="July | Wish List" />[m
+[32m+[m[32m      {favoriteBooksExist ? ([m
+[32m+[m[32m        <ListBooks books={books} />[m
+[32m+[m[32m      ) : ([m
+[32m+[m[32m        <Empty message="Your wish list is empty" />[m
+[32m+[m[32m      )}[m
+[32m+[m[32m    </>[m
+   );[m
+ };[m
+ [m

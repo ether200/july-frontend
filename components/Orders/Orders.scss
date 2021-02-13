@@ -45,10 +45,7 @@
           a {
             color: $color-white;
             font-family: $font-secondary;
-
-            &:hover {
-              color: $primary;
-            }
+            border-bottom: 1px solid $color-white;
           }
         }
       }

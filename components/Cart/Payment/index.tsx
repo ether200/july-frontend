@@ -1,8 +1,8 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { isArrayNotEmpty } from "../../../utils";
+import { BookI, AddressI } from "../../../intefaces";
 import Link from "next/link";
-import { Props } from "../../Cart";
 import PaymentForm from "./PaymentForm";
 
 const STRIPE_TOKEN = process.env.NEXT_PUBLIC_STRAPI_KEY;
@@ -11,7 +11,19 @@ const stripePromise = loadStripe(STRIPE_TOKEN, {
   locale: "en",
 });
 
-const Payment: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {
+type Props = {
+  cartItems: Array<BookI> | null;
+  addressInfo: Array<AddressI> | null;
+  userId: string | null;
+  totalPayment: number;
+};
+
+const Payment: React.FC<Props> = ({
+  cartItems,
+  addressInfo,
+  userId,
+  totalPayment,
+}) => {
   const addressExist = isArrayNotEmpty(addressInfo);
 
   if (!addressExist) {
@@ -34,6 +46,7 @@ const Payment: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {
             cartItems={cartItems}
             addressInfo={addressInfo}
             userId={userId}
+            totalPayment={totalPayment}
           />
         </Elements>
       </div>

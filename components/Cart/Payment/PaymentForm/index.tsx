@@ -1,17 +1,28 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { Props } from "../../";
 import { paymentCart, emptyCart } from "../../../../axios/cartApi";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { BookI, AddressI } from "../../../../intefaces";
 
-const PaymentForm: React.FC<Props> = ({ addressInfo, cartItems, userId }) => {
+type Props = {
+  cartItems: Array<BookI> | null;
+  addressInfo: Array<AddressI> | null;
+  userId: string | null;
+  totalPayment: number;
+};
+
+const PaymentForm: React.FC<Props> = ({
+  addressInfo,
+  cartItems,
+  userId,
+  totalPayment,
+}) => {
   const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState<boolean>(false);
   const [stripeError, setStripeError] = useState<null | string>(null);
   const products = cartItems.map((item) => item.id);
-  const totalPayment = cartItems.reduce((acc, item) => acc + item.price, 0);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

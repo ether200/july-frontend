@@ -7,6 +7,8 @@ type Props = {
 };
 
 const UserInfo: React.FC<Props> = ({ userData, mutateUser }) => {
+  const dateFormatted = userData.createdAt.slice(0, 10);
+
   return (
     <div className="myAccount">
       <div className="myAccount__data">
@@ -15,7 +17,7 @@ const UserInfo: React.FC<Props> = ({ userData, mutateUser }) => {
         <p>Name: {userData.name}</p>
         <p>Last name: {userData.lastName}</p>
         <p>Email: {userData.email}</p>
-        <p>Registered on: {userData.createdAt}</p>
+        <p>Registered on: {dateFormatted}</p>
       </div>
       <EditUserForm userData={userData} mutateUser={mutateUser} />
     </div>

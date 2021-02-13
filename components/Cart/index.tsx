@@ -9,7 +9,9 @@ export type Props = {
 };
 
 const Cart: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = cartItems
+    .reduce((acc, item) => acc + item.price, 0)
+    .toFixed(2);
   return (
     <div className="cart-container">
       <h2>Your cart</h2>
@@ -30,6 +32,7 @@ const Cart: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {
           cartItems={cartItems}
           addressInfo={addressInfo}
           userId={userId}
+          totalPayment={+totalPrice}
         />
       )}
     </div>

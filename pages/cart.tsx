@@ -5,6 +5,7 @@ import { getAddress } from "../axios/addressApi";
 import { BookI, AddressI } from "../intefaces";
 import Cart from "../components/Cart";
 import Empty from "../components/Empty";
+import Seo from "../components/SEO";
 
 export type Props = {
   cartItems: Array<BookI> | null;
@@ -13,10 +14,15 @@ export type Props = {
 };
 
 const CartPage: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {
-  return cartItems ? (
-    <Cart cartItems={cartItems} addressInfo={addressInfo} userId={userId} />
-  ) : (
-    <Empty message="Your cart is empty" />
+  return (
+    <>
+      <Seo title="July | My Cart" />
+      {cartItems ? (
+        <Cart cartItems={cartItems} addressInfo={addressInfo} userId={userId} />
+      ) : (
+        <Empty message="Your cart is empty" />
+      )}
+    </>
   );
 };
 

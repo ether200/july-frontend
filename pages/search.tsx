@@ -4,6 +4,7 @@ import { searchForBooks } from "../axios/bookApi";
 import { isArrayNotEmpty } from "../utils";
 import ListBooks from "../components/ListBooks";
 import Empty from "../components/Empty";
+import Seo from "../components/SEO";
 
 type Props = {
   books: BookI[];
@@ -13,9 +14,15 @@ const search: React.FC<Props> = ({ books }) => {
   const booksExist = isArrayNotEmpty(books);
 
   return booksExist ? (
-    <ListBooks books={books} />
+    <>
+      <Seo />
+      <ListBooks books={books} />
+    </>
   ) : (
-    <Empty message="NO RESULTS" />
+    <>
+      <Seo />
+      <Empty message="NO RESULTS" />
+    </>
   );
 };
 

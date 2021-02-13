@@ -41,7 +41,7 @@ const LatestProducts: React.FC<Props> = ({ latestBooks }) => {
 
   return (
     <div className="latestProducts">
-      <h1>Newest Books</h1>
+      <h1>Latest Books</h1>
       <Slider {...settings}>
         {latestBooks.map((book) => (
           <Link href={`/books/${book.url}`} key={book.id}>

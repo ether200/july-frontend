@@ -24,7 +24,7 @@ const OrderCard: React.FC<Props> = ({ order }) => {
         <ul>
           {order.books.map((book) => (
             <li key={book.id}>
-              <Link href={`/${book.url}`}>
+              <Link href={`/books/${book.url}`}>
                 <a>{book.title}</a>
               </Link>
             </li>

@@ -4,19 +4,31 @@ import { getFavoriteBooks } from "../../axios/favoriteApi";
 import { GetServerSideProps } from "next";
 import BookInfo from "../../components/BookInfo";
 import Empty from "../../components/Empty";
+import Seo from "../../components/SEO";
+import { BookI, FavoriteBookI } from "../../intefaces";
 
-const BookPage = ({ book, favoriteBooks, userId, token }) => {
+type Props = {
+  book: BookI;
+  favoriteBooks: FavoriteBookI[];
+  userId: string;
+  token: string;
+};
+
+const BookPage: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {
   if (!book) {
     return <Empty message="404 | Book not found" />;
   }
 
   return (
-    <BookInfo
-      book={book}
-      favoriteBooks={favoriteBooks}
-      userId={userId}
-      token={token}
-    />
+    <>
+      <Seo title={`July | ${book.title}`} />
+      <BookInfo
+        book={book}
+        favoriteBooks={favoriteBooks}
+        userId={userId}
+        token={token}
+      />
+    </>
   );
 };
 

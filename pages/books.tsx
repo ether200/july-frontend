@@ -4,6 +4,7 @@ import { getBooksWithLimit, getBooksCount } from "../axios/bookApi";
 import { isArrayNotEmpty } from "../utils";
 import ListBooks from "../components/ListBooks";
 import Empty from "../components/Empty";
+import Seo from "../components/SEO";
 
 type Props = {
   books: Array<BookI>;
@@ -14,10 +15,15 @@ type Props = {
 const Books: React.FC<Props> = ({ books, page, numberOfBooks }) => {
   const booksExist = isArrayNotEmpty(books);
 
-  return booksExist ? (
-    <ListBooks books={books} page={page} numberOfBooks={numberOfBooks} />
-  ) : (
-    <Empty message="Something went wrong" />
+  return (
+    <>
+      <Seo title="July | Store" />
+      {booksExist ? (
+        <ListBooks books={books} page={page} numberOfBooks={numberOfBooks} />
+      ) : (
+        <Empty message="Something went wrong" />
+      )}
+    </>
   );
 };
 

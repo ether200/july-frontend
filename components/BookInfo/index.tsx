@@ -8,9 +8,16 @@ import { FiShoppingCart, FiHeart, FiCheck } from "react-icons/fi";
 import { isProductInCart, addProductsCart } from "../../axios/cartApi";
 import { deleteFavoriteBook, addFavoriteBook } from "../../axios/favoriteApi";
 import { isArrayNotEmpty } from "../../utils";
-import { FavoriteBookI } from "../../intefaces";
+import { FavoriteBookI, BookI } from "../../intefaces";
 
-const BookInfo = ({ book, favoriteBooks, userId, token }) => {
+type Props = {
+  book: BookI;
+  favoriteBooks: FavoriteBookI[];
+  userId: string;
+  token: string;
+};
+
+const BookInfo: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {
   const router = useRouter();
   const { data: favBooks, isValidating, mutate } = useSWR<FavoriteBookI[]>(
     token ? [`/favorites?user=${userId}`, token] : null,

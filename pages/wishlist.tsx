@@ -9,6 +9,7 @@ import { getFavoriteBooks, favBooksFetcher } from "../axios/favoriteApi";
 import { FavoriteBookI } from "../intefaces";
 import ListBooks from "../components/ListBooks";
 import Empty from "../components/Empty";
+import Seo from "../components/SEO";
 
 type Props = {
   favoriteBooks: Array<FavoriteBookI>;
@@ -28,10 +29,15 @@ const Wishlist: React.FC<Props> = ({ favoriteBooks, userId }) => {
   const favoriteBooksExist = isArrayNotEmpty(favoriteBooks);
   const books = favBooks.map((book) => book.book);
 
-  return favoriteBooksExist ? (
-    <ListBooks books={books} />
-  ) : (
-    <Empty message="Your wish list is empty" />
+  return (
+    <>
+      <Seo title="July | Wish List" />
+      {favoriteBooksExist ? (
+        <ListBooks books={books} />
+      ) : (
+        <Empty message="Your wish list is empty" />
+      )}
+    </>
   );
 };
 
