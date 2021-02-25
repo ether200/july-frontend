@@ -2,6 +2,8 @@ import axiosConfig from "./axiosConfig";
 import authConfig from "./authConfig";
 import { setCookie, destroyCookie } from "nookies";
 import { getCartClientSide, getTokenClientSide } from "../utils";
+import { Token } from "@stripe/stripe-js";
+import { AddressI } from "../intefaces";
 
 export const getProductsCart = () => {
   const cart = getCartClientSide();
@@ -51,11 +53,11 @@ export const isProductInCart = (product: string) => {
 };
 
 export const paymentCart = async (
-  tokenPayment,
-  books,
-  idUser,
-  addressShipping,
-  totalPayment
+  tokenPayment: Token,
+  books: string[],
+  idUser: string,
+  addressShipping: AddressI,
+  totalPayment: number
 ) => {
   try {
     const jwt = getTokenClientSide();
