@@ -159,6 +159,12 @@
         box-shadow: $light-shadow;
         z-index: 1;
 
+        p {
+          color: $color-white;
+          text-align: center;
+          grid-column: 1 / -1;
+        }
+
         &__link {
           color: $color-white;
           font-weight: 500;

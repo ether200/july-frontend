@@ -1,4 +1,4 @@
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import useSWR from "swr";
 import Link from "next/link";
 import { categoriesFetcher } from "../../axios/categoryApi";
@@ -9,21 +9,16 @@ import { CategoryI } from "../../intefaces";
 
 const Navigation: React.FC = () => {
   const router = useRouter();
-  const { data, error } = useSWR<CategoryI[]>(
-    "/categories",
-    categoriesFetcher,
-    {
-      revalidateOnFocus: false,
-    }
-  );
+  const { data } = useSWR<CategoryI[]>("/categories", categoriesFetcher, {
+    revalidateOnFocus: false,
+  });
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const handleSubmit = (event: SyntheticEvent) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!searchQuery.trim()) return;
-    const modifiedQuery = searchQuery.trim().split(" ").join("_");
-    router.push(`/search?_q=${modifiedQuery}`);
+    router.push(`/search?_q=${searchQuery.trim()}`);
     setSearchQuery("");
   };
 
@@ -49,14 +44,17 @@ const Navigation: React.FC = () => {
               categories <FaCaretDown />
             </button>
             <div className="navbar__navigation__links__dropdown__content">
-              {data &&
+              {!data ? (
+                <p>Loading...</p>
+              ) : (
                 data.map((category) => (
                   <Link href={`/categories/${category.url}`} key={category.id}>
                     <a className="navbar__navigation__links__dropdown__content__link">
                       {category.title}
                     </a>
                   </Link>
-                ))}
+                ))
+              )}
             </div>
           </li>
           <li>
