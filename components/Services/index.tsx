@@ -1,6 +1,11 @@
 import React from "react";
 import { IconContext } from "react-icons";
-import { MdAttachMoney, MdLocalShipping, MdCreditCard } from "react-icons/md";
+import {
+  MdAttachMoney,
+  MdLocalShipping,
+  MdCreditCard,
+  MdThumbUp,
+} from "react-icons/md";
 
 const Services = () => {
   return (
@@ -20,6 +25,11 @@ const Services = () => {
           <MdCreditCard />
           <h1>Credit card</h1>
           <p>Pay with credit card</p>
+        </div>
+        <div className="services__card">
+          <MdThumbUp />
+          <h1>Trusted</h1>
+          <p>Over 50 years in the market</p>
         </div>
       </div>
     </IconContext.Provider>
