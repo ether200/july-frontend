@@ -1,25 +1,31 @@
-import { GetServerSideProps } from "next";
+import { useState } from "react";
+import { GetStaticProps } from "next";
 import { BookI } from "../intefaces";
-import { getBooksWithLimit, getBooksCount } from "../axios/bookApi";
-import { isArrayNotEmpty } from "../utils";
+import { getBooksCount, getAllBooks } from "../axios/bookApi";
 import ListBooks from "../components/ListBooks";
 import Empty from "../components/Empty";
 import Seo from "../components/SEO";
 
 type Props = {
   books: Array<BookI>;
-  page: number;
   numberOfBooks: number;
 };
 
-const Books: React.FC<Props> = ({ books, page, numberOfBooks }) => {
-  const booksExist = isArrayNotEmpty(books);
+const Books: React.FC<Props> = ({ books, numberOfBooks }) => {
+  const [partialBooks, setPartialBooks] = useState(books.slice(0, 15));
+
+  const changePartialBooks = (start: number, end: number) =>
+    setPartialBooks(books.slice(start, end));
 
   return (
     <>
       <Seo title="July | Store" />
-      {booksExist ? (
-        <ListBooks books={books} page={page} numberOfBooks={numberOfBooks} />
+      {books.length ? (
+        <ListBooks
+          books={partialBooks}
+          numberOfBooks={numberOfBooks}
+          changePage={changePartialBooks}
+        />
       ) : (
         <Empty message="Something went wrong" />
       )}
@@ -27,19 +33,16 @@ const Books: React.FC<Props> = ({ books, page, numberOfBooks }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({
-  query: { page = 1 },
-}) => {
-  const start = +page === 1 ? 0 : (+page - 1) * 15;
+export const getStaticProps: GetStaticProps = async () => {
   const numberOfBooks = await getBooksCount();
-  const books = await getBooksWithLimit(start);
+  const books = await getAllBooks();
 
   return {
     props: {
       books,
-      page: +page,
       numberOfBooks,
     },
+    revalidate: 600,
   };
 };
 

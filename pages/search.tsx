@@ -1,7 +1,6 @@
 import { GetServerSideProps } from "next";
 import { BookI } from "../intefaces";
 import { searchForBooks } from "../axios/bookApi";
-import { isArrayNotEmpty } from "../utils";
 import ListBooks from "../components/ListBooks";
 import Empty from "../components/Empty";
 import Seo from "../components/SEO";
@@ -11,9 +10,7 @@ type Props = {
 };
 
 const search: React.FC<Props> = ({ books }) => {
-  const booksExist = isArrayNotEmpty(books);
-
-  return booksExist ? (
+  return books.length ? (
     <>
       <Seo />
       <ListBooks books={books} />

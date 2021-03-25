@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import { getBooksByCategory } from "../../axios/bookApi";
-import { isArrayNotEmpty } from "../../utils";
 import { BookI } from "../../intefaces";
 import ListBooks from "../../components/ListBooks";
 import Empty from "../../components/Empty";
@@ -12,14 +11,13 @@ type Props = {
 };
 
 const Category: React.FC<Props> = ({ books, category }) => {
-  const booksExist = isArrayNotEmpty(books);
   const categoryWithSpaces = category.split("-").join(" ");
   const categoryCapitalized =
     categoryWithSpaces.charAt(0).toUpperCase() + categoryWithSpaces.slice(1);
   return (
     <>
       <Seo title={`July | ${categoryCapitalized}`} />
-      {booksExist ? (
+      {books.length ? (
         <ListBooks books={books} />
       ) : (
         <Empty message="No books found for such category" />

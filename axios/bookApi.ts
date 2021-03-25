@@ -34,7 +34,7 @@ export const getBooksByCategory = async (category: string | string[]) => {
 
 export const getBooksCount = async () => {
   try {
-    const { data } = await axiosConfig.get("/books/count");
+    const { data } = await axiosConfig.get<number>("/books/count");
     return data;
   } catch (error) {
     return null;

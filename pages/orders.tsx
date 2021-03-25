@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { getOrders } from "../axios/orderApi";
-import { getTokenServerSide, getIdUser, isArrayNotEmpty } from "../utils";
+import { getTokenServerSide, getIdUser } from "../utils";
 import { OrderI } from "../intefaces";
 import Orders from "../components/Orders";
 import Empty from "../components/Empty";
@@ -11,12 +11,10 @@ export type Props = {
 };
 
 const OrdersPage: React.FC<Props> = ({ orders }) => {
-  const ordersExist = isArrayNotEmpty(orders);
-
   return (
     <>
       <Seo title="July | My Orders" />
-      {ordersExist ? (
+      {orders.length ? (
         <Orders orders={orders} />
       ) : (
         <Empty message="You haven't made any order yet" />

@@ -1,9 +1,4 @@
-import {
-  getTokenServerSide,
-  getIdUser,
-  isArrayNotEmpty,
-  getTokenClientSide,
-} from "../utils";
+import { getTokenServerSide, getIdUser, getTokenClientSide } from "../utils";
 import useSWR from "swr";
 import { getFavoriteBooks, favBooksFetcher } from "../axios/favoriteApi";
 import { FavoriteBookI } from "../intefaces";
@@ -26,13 +21,12 @@ const Wishlist: React.FC<Props> = ({ favoriteBooks, userId }) => {
     }
   );
 
-  const favoriteBooksExist = isArrayNotEmpty(favoriteBooks);
   const books = favBooks.map((book) => book.book);
 
   return (
     <>
       <Seo title="July | Wish List" />
-      {favoriteBooksExist ? (
+      {favBooks.length ? (
         <ListBooks books={books} />
       ) : (
         <Empty message="Your wish list is empty" />

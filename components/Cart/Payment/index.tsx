@@ -1,6 +1,5 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { isArrayNotEmpty } from "../../../utils";
 import { BookI, AddressI } from "../../../intefaces";
 import Link from "next/link";
 import PaymentForm from "./PaymentForm";
@@ -24,7 +23,7 @@ const Payment: React.FC<Props> = ({
   userId,
   totalPayment,
 }) => {
-  const addressExist = isArrayNotEmpty(addressInfo);
+  const addressExist = addressInfo.length;
 
   if (!addressExist) {
     return (

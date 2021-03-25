@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 import { AddressI } from "../../../intefaces";
-import { isArrayNotEmpty } from "../../../utils";
 
 type Props = {
   addressData: Array<AddressI>;
@@ -8,7 +7,7 @@ type Props = {
 };
 
 const Address: React.FC<Props> = ({ addressData, setIsModalOpen }) => {
-  const addressExist = isArrayNotEmpty(addressData);
+  const addressExist = addressData.length;
 
   return (
     <div className="address">

@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { AddressSchema } from "../../../yup";
 import { createAddress, updateAddress } from "../../../axios/addressApi";
 import { AddressI } from "../../../intefaces";
-import { isArrayNotEmpty } from "../../../utils";
 import FormInput from "../../FormInput";
 
 export type AddressValues = {
@@ -31,7 +30,7 @@ const AdressForm: React.FC<Props> = ({ userId, address, mutateAddress }) => {
     resolver: yupResolver(AddressSchema),
   });
 
-  const addressExist = isArrayNotEmpty(address);
+  const addressExist = address.length;
 
   const onSubmit: SubmitHandler<AddressValues> = async (formData) => {
     setLoading(true);

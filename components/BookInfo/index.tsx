@@ -7,7 +7,6 @@ import { IconContext } from "react-icons";
 import { FiShoppingCart, FiHeart, FiCheck } from "react-icons/fi";
 import { isProductInCart, addProductsCart } from "../../axios/cartApi";
 import { deleteFavoriteBook, addFavoriteBook } from "../../axios/favoriteApi";
-import { isArrayNotEmpty } from "../../utils";
 import { FavoriteBookI, BookI } from "../../intefaces";
 
 type Props = {
@@ -30,7 +29,7 @@ const BookInfo: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {
   let currentFavBook = favBooks?.filter(
     (favBook) => favBook?.book?.id === book.id
   );
-  let isFavorite = isArrayNotEmpty(currentFavBook);
+  let isFavorite = currentFavBook.length;
   const [isItemOnCart, setIsItemOnCart] = useState<boolean>(
     isProductInCart(book.url)
   );

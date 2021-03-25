@@ -4,11 +4,11 @@ import Pagination from "../Pagination";
 
 type Props = {
   books: Array<BookI>;
-  page?: number;
   numberOfBooks?: number;
+  changePage?: (initial: number, end: number) => void;
 };
 
-const ListBooks: React.FC<Props> = ({ books, page, numberOfBooks }) => {
+const ListBooks: React.FC<Props> = ({ books, numberOfBooks, changePage }) => {
   return (
     <>
       <div className="listGrid">
@@ -16,8 +16,8 @@ const ListBooks: React.FC<Props> = ({ books, page, numberOfBooks }) => {
           <BookCard {...book} key={book.id} />
         ))}
       </div>
-      {page && numberOfBooks ? (
-        <Pagination page={page} numberOfBooks={numberOfBooks} />
+      {numberOfBooks ? (
+        <Pagination numberOfBooks={numberOfBooks} changePage={changePage} />
       ) : null}
     </>
   );
