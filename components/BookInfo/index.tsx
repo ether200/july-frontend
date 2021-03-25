@@ -29,7 +29,7 @@ const BookInfo: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {
   let currentFavBook = favBooks?.filter(
     (favBook) => favBook?.book?.id === book.id
   );
-  let isFavorite = currentFavBook.length;
+  let isFavorite = currentFavBook?.length;
   const [isItemOnCart, setIsItemOnCart] = useState<boolean>(
     isProductInCart(book.url)
   );
