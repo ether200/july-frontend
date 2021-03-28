@@ -1,6 +1,6 @@
 # July bookstore
 
-![Project Image](https://lh3.googleusercontent.com/pw/ACtC-3eByCD76g-WUmX-0EL3pEPYyp2ALSVsITuYJ4CZ8iL3d4TT7FmU9LRJOeI33hJFt4xjifEPhMqCfUkcRR2GGbLUDfBe6y7afmjFJbpuhSGNqPRWy4LDDv1NTjh9rmU_duwfelI2iymWrIOvOA41_xRQ_RpNPgUydrbfJ2Oe-8OPa2-3VYBRb4oRn5ibEcQk0B5nOL_ftMGPJ8jSFE_ARJ_LTTu2AEfsfKX9T6lARiUyXhBYpU6MVQCf5WsGfw5IC-jEyFjU7PHBWGQPF5BH8SYjvjTTMaOh_sr5st-QCpYIeElOlE_O0x-sXBz73ucvmmoLXCNUT0dU-mHIXYPE80CysA_u625XtYNRe5hVALeZYDpwm6cqnPKMl1rJUugG55xPfO_8hhMqfPPH0siz7Ycn95O5c7Zub4rMRu0xy-qSdVXrDnDOn_fLPYzZe9bnmcrNTG8QkpaxtsMDv1XZQEL3ueA4M83IYyyN8Jvc5NdZYzYVEISUIqibpdOdTuwGf7p1BbLBtfC8_vnyo_dHqgzL6T8w29AnPTmykdnobvDXuWKyujyzGdnJv2vsB0-XkLW0GtmxmnwuuLTfdET_NyPiWa4TYGCGdolQiLuffsFnsTSAv353AhCeQZfjeiqvmo_CJhpRyu9YdlGAUsV6rxdoT0JcykMWTmQVsAHVDcRi0g0eAldMdYO1Pv8H1ZsH5nNBzvHBWy8qoAv13dYVRALP79GvBTJ5zoN4HmWP06lMyg=w1263-h789-no?authuser=0&authuser=0)
+![Project Image](https://i.ibb.co/bsyCmGG/July-bookstore.png)
 
 ---
 
@@ -9,6 +9,7 @@ You're sections headers will be used to reference location of destination.
 
 - [Description](#description)
 - [How To Use](#how-to-use)
+- [License](#license)
 - [Author Info](#author-info)
 
 ---
@@ -18,7 +19,6 @@ You're sections headers will be used to reference location of destination.
 July is an e-commerce platform that was done under the concept of SSR (Server-Side-Rendering), using the methods provided by NextJS (React-Framework). Some of it's functionalities are: account register, product listing by category, product page, cart system, virtual payment with stripe, and more.
 
 #### Technologies
-
 
 - NextJS
 - React-Hook-Form
@@ -34,35 +34,61 @@ July is an e-commerce platform that was done under the concept of SSR (Server-Si
 
 ## How To Use
 
-![Project Image](https://lh3.googleusercontent.com/OILt-rawuzRHd9fgIapVmrwjvJig_juYGWiy1n5u--9IMsVQEK1Oo5ath0p1dkOGzS4XR4YmkoqvZXahgArMw_0M3K6CcAth_vIqcpZqQM2aONFNTKJHeBkHctZWy0p8LFuCGeo6EiH5qDBRm9lkC9FBQZroGRxAuw-7n3hQLf0jWnb2V8bGDj_5mn0Y-2vkW69GXQF4GN_O0nyru33_SFO_WVJF6VJl1KEI7MNFDG5k4o9wSW41PA6ves3GuHjZGHtFvz9-geRqO8NdyH_pgx9lymHBLSMUJXaqdVhtlJY8x6Vutk-13-h4J-dl2TsHasiMNSqtTVhMlbK4WiOK9Lt_QA0ePuG61S68P7X8Op-UuZuQQvpIEVLoxbQakVZf0xKFi8eGqN1PGSp3XauRhyM3WONAqhKmhq5FumPnqI2BzLm6Y7A-MQpi6eXV9qMOclK9wdoabpkTYmR0IZn3zqKBoF4ef013CtfY8t1Hwew53zjmPRYntQ671GCA9PRWB3PdOCkXGiVfV8zSJCz93emTThURQcVt1dwHMZZsc3E0Akxpe3DzJyP4WhNuqkVdMzwZwHK_DkfLq0gAhn79I2gktUtWUFdrX9Ws9a2x5Tr3NAI_qmiospZx-4UnA3G6gMGUWc9XnYB-HUm1ilh6Ik-cF_R3zXsYySYUuQEFq2hP9T8qm0uDLl1zl5_uKy24jVAbpS9dicUn4HIusKErjXI=w1248-h789-no?authuser=0)
+![Project Image](https://i.ibb.co/P1mgTjn/july-1.png)
 
 The home page has different kinds of links to the other pages such as store, cart, sign up and a dropdown where you can see all the categories. There are 10 categories and each of them have 5 books, making a total of 50 books.
 
 The store page has pagination, showcasing 15 books per page.
 
-![Project Image](https://lh3.googleusercontent.com/SgtkaYAT460OpdEaGbTUqwYZlQtJJeAOD7uJoPChvc64a_FALZl69ZFy_JR1fllH_4YNbfBxlIhA9oV4ltwWUWlPekDkMhMB7MGruUtoRCxL_rO96oLVUHg0xz6I1RzWBrLctrfFqAuVyMBVYROuN3j2D-Nyp4UvmOBXmHbrm_Xrti_yoR2faz2dPRqCptuETD_VfW-WKW3vWxwwEisgcKY6geOYGntQ4f_4CE4WSyJO9iGcUAW4Jvahze7rt8kn5knsJIIg-A3b0_RnfGgQo8Bfc6Ie_0x7c5GxZjPcedJC721r3BErg4xC7HlWqQgu8x_iJ-xGFjCm2ePC9I3Vnqy1_caha74iEDXCntZ5cJ0tw4Seon4mMS-AX__TbLxirGAYfVLIPn-XWLWYKMO3LwxbwGBBBKm9jEXlwBWf8ivr6OMR4BoQi2lYRlg2uhW4hsl1_CK6uuH2_r54rBnbXhyIvVosDEjj6QYAfYo3YDgtpv6lqTQh3vtqa1pPoOFY8mXON27In_fok3h-zJx7r3jt5laY0UmWdlah4gO2wzLXm6F6JSYwu2lPy4CzDa55UikbPFzjJ7zp_U2eiHsnLqFuKsqT3ZlfyB-kksxuuqxSwhxFvapKQ5erYjQNqxtsZY0V7ckEgZ1T245rxOrE_jAiLBVEpkZDgBxomW-w-Cu6vxCj95IN1GplnhQwK6EVz7IadaGyEu_yf7JZ88tnPKA=w1254-h789-no?authuser=0)
+![Project Image](https://i.ibb.co/y4kNyWf/july-2.png)
 
 Each book has it's own page where you can read the description and perform two actions: add to cart and add to wish list. You can't purchase unless you're logged in.
 
-![Project Image](https://lh3.googleusercontent.com/xQodGwTNdJBsVm8GEp3V7ff0Mu546QU0Od7BCd6ceV6KqzfXD_PCXeo0XgAOmRXeqW94mdCamc9D_b3W_DMoijTxNmVeeNyxKUYpZWrG18RZcq3RQfTij6Hb5Hl9xZkrOhN0FLrUeoFohEadEbk3xGUdvLkOXqa4-dTvz9obD_3cm4qodT8KT5ezjKbbRd5bu_Bbj4XYMh4OZ2bUOiFX2Cd2dFPKFK9kv8d3b30yG1yY6lC_tZTxsrpWD64XFFnHeNmN_aUfAtkYRvgePBvt_4LIPXslzCLWK3ldEmFM_aQv2YZawgvQLP1soOhs2cM7jmNcy11o5d7fqXpsS2pStgLl8vRJpAr278RhEv6gn2yo3N-ouHcqWGGGYnDj3-ziCyDbeaxxjeLfWvdHNbYCfGNgiHYs7kbUm9kL9g-uw1WERCsSf2XIq17SEWpUMZCp2fFjg59Ni171yKbX1WArzV_utpHGrjbJpxtcD3L0Rycwzsh9WSbaFBh2euTo3MyRj6Mr7ietdG7CPB1FCsB00ZDd5aRlpq08DA8MPWA1ymLiyvy82jaHrhcS4iVX94Y-oJsgXmBUsu-78u36Vak5y17jD0z77czAHRq0jEQcccvlwmTlb9aSAsNn1Sz1zUM3wLQpPDd7ammf_JkA6pzFisir3z_Uois67ykscT2VfUq1eyEdJ4sYpLlkWjQ-oVwuptO1fsDYS5ne_eYA1gNPfxo=w1263-h789-no?authuser=0)
+![Project Image](https://i.ibb.co/bsyCmGG/July-bookstore.png)
 
-![Project Image](https://lh3.googleusercontent.com/rm4a8d7S4_triVpyfmVYY1U_QE8obI1-61bLAMwre32_K_uoamkE9yjE8FIM5Q6LLayNPGHU8JQwYAV1n9fXepjSTrm-gWmfnFK84HJMbQgG7oHbi8hcOIVmK_6IV2opkNC8-hB1IbiXW_3IARQy5z1INMx0SKqNJvJ0sZJXUr4-ozSFAo8DHfjLd0ZDy-O9Plyc9FUpRD85vawZgb5ID-_gecIR5isgAINU4eRulDWeoO552_8sxKuZRfP0IRcqlqzJS9EPm9mkEbr8a3ljS9rxsLinCYw2jyYp4Ka4uLXLLJHyvvvFHFIlKn5tGRBzWxyCq5ZtB3zYcgT6igDeU7bgQGAwqIufWVOxkjlWSxZwTgdlM21hgWAyHn330hpHkjzNRsmdH3ZP7Xb87GC9VQ6FTJDiaYn5ADs1PBtYeonw4gbztDlrBoBmahEcl0h1wWBPkhePckFWUzFUQMXreKu3RbQ4GLqwPcH43D-aZ5kPDIwhyB0fn1-sRAyOXXVMqVe1ZYAvKHbPkT4IdGlQ0iaCSXF3BvrUr0XSBB4OVjsbPyBTiaCE-tSKQHTALS5EYtxD5cM2cB7ajhz12Wo8F2jooAp8AL_jKPfvMqkaVriZ7cnt9ct4NokBSxRANOXPAFXCSJV-OYvHfWwxnfj-eZ8GDVBDEKG42k0n_DC6hpfE4-wKHMxfHRWGVNreP5rHGVfzD-5XpFRHdk7-5uh0WLU=w1263-h789-no?authuser=0)
+![Project Image](https://i.ibb.co/QJRrSCD/july-3.png)
 
 Once you've registered or logged in, you'll still be not available to purchase until you create an address in the account page.
 
-![Project Image](https://lh3.googleusercontent.com/oDsXHThEs0-QjN25IuWH6wxleYE8Qg5nOCJvE9eoQ_nk5D1fWu2v3sez4J5zAx8lZpQ7i-mXKI9E4CzA6ZWV-5SzpnItiE1f04il0mcLSIwKEwgqthkPcwXd97v2Mdm12B5sFMyeotMTuVy-46j5dCJ8DXlAnumG0y0_lP5y6FCK1bg_g72SHwE7QAODlE3-bDMOy8Z93VDxPPIIt1kL5b41QyZ9spe3BEuptb7hkd5U5EfJyT94I5ybutZHaBfBR5_hGXR7kV-2TK5hkj5xw-i_OtS_SZrh9bUPYFob5wrwtWB_cpWsSOuQPH3McVgBczKVyEQmMGoU2kIZMfecxjzlH6cmKE08ZqmpFulG0OJJ6ph5RA1GdB_Szd8sXi0wIzPfEtth4OC7cAVIJpba8ltZ0nh2MeBPGyn7HytN_Z9TI5vElMfdYigvMIKrABNfSAbl6uNa_qMC_aKzOhN1N50ksydoNy1dQwqIeGnNd0O3X2tBp-ZnfSMhd_PPRcz4Boj9yuw73dlzd4Vc7MkmHcGkrPMGAhIOHqxQOrZ7IqYg66nbEdmZ2wDRQfQrLWOj01tzc-MOEWA3yZSb-343qS4gauGFEjZzpbQIDF7p7iPxWoqb5RK5azuRryw8ILba-K_G8hXdVXW6WvOsqHxzPzdfkAMu-eHf3VQzqqoJkQQ5TIQb3QQqmES-OoFO7x017K3mUedpIl5ZR_TKFIycKyM=w1263-h789-no?authuser=0)
+![Project Image](https://i.ibb.co/fXPmkHx/july-4.png)
 
-![Project Image](https://lh3.googleusercontent.com/uqMdfft9T5YZpljc3qGrMRjVl6ZF2FrHWUeQpX-5ZgzGXyOZN4Uezc7SGYTVRxCLwwY5zhN342I-MNhAu7dhsLiSWQvJDDDGNymzR7cCvhXEmiLOl_Q5WC6QsV54yN_K6tGYOPz7WBgd1hEOe2gcC3BVkYVnwA9WicWCwdgYTniMYvZbvw-VVgA2zWVsbEIpswrtbD7M2fv4Dealfme8pSD7dF2ytViOyWI6D2OzHXB1Ze6gbMAYADc0SIGqEpkovRCbp3ZfixZqm_MBbETMRh97MjhORtoBdjbDAKkOlTSiymzQF2NnR_QRy_uXh4HQuWPIL1EjEFcB7UlY8F2HEXQtKasXYXB4p2ONvUpeKjQ30NnwU9BzvPHlbivIQJWrGgvjEFb2lsGobtfc9dOXHPdtV88W96X5TVczQQc0KkMy2livohJXYP0Q3ME6uHNC5kHkkKMKgr2CiFdn5c-afQX0QEKXA3mQv-pN273Q4ZLpK6nXd9zNGcUW_s-FPD7l7Y6xuxkKuPU9-1atDH0mHDqiaYPDGkniBt9vkC1E8ofOWqKlqIRaGM1YqUkIcbTovHru6z1Na4J-M-8k9Y8RDcbFqWBdKbAnkq_RCm6x7Kp3PdCwwB-lEdWh7L_1neij9snt9BOKm9srwyTzlWzkC4UEtpnJ1jXmy0OEMXTH4ze-KDtZz_l_Zc3U-UEtGkYsqeoZsKWgWm0R2FflwepVHUw=w1263-h789-no?authuser=0)
+![Project Image](https://i.ibb.co/DLR0b2P/july-5.png)
 
 After you register an address you'll be available to try to perform a purchase. If you want to test it by yourself, you can use the next Visa testing card:<br />
 Card number: 4242 4242 4242 4242<br/>
 CVC: Any 3 digits number
 
-![Project Image](https://lh3.googleusercontent.com/K7iXj1Nm9pONAmzWDeUkNNVqmqd36NrMdCwsf5bYmfiSMITnxtzUM7EWqCRWrNOArkqmBpq38qNFlxFodTIEGiorVaAh8ZxNDJ-q-qnI36wVZI6XOYf3dciQ2pkphfxyBW4y8X0teoxj2-oYwA_BiRN90VXnxDnGZToAGqQY8duY3YVy6rGnBmBeAhCssxilYLYE5PV6byHT_poX1pHLYDxOCMEcGGwkgykrk9j0gHlxsISA8i6R2AyS9pBT31qLoisMb2oEbJ2lcawPDexIXGxJ_vfAivIBBvUYYHlLBrCmNzaIEbnSiHGmN8f2ZcdOpVPJvQ8UtmDj1ViAE4Qd5JJTPE6jq5HVwmDDhbxBhyFpwZiAs78BdrLns-AC_LA1cmr-zLABonvKzezHlz0nWFhihtXj1C-Pzf3zDB3-zznYGXJEO049euaGoeU076bptNaSD5mlX5KoV04k67nAM9PtqNiCWLqyyhmBhEY1mcY3aGVcKSRRkTLLyuku3o-POsjLMf99wNKMwHlTVF4hSdfw9iPN4mvFDW8EN6wkavUCmgcGHQ5q18lLQZf2CH8UeGZhesZrfkyTe7J4wD4dRHLFHcOgFzncfRWXLeuwfZpQOTneviv-i4x7cVy076qnMjzzfFgFn79M4sr7gHBwx7szvQUFTJNPFDbe8g_zFVR-UMA-uHucdTdgxL9DYovIE7i6qMLlTFw2WZ51sgKtsn0=w1251-h789-no?authuser=0)
+![Project Image](https://i.ibb.co/0tKw0WJ/july-6.png)
 
 If the purchase is performed correctly, you'll be redirected to the order page where you can see all the purchases you have done.
 
-![Project Image](https://lh3.googleusercontent.com/JWYT_2GfLq5hiAiJs47VZRQ5b2g6ODXFG4O2pN0O8nhiRmI3huNIGvqreXVUQmWTGlWyU4UEUN-gqWtTJ10Uhg0H4jDVHNV8vat2bMp59Jqfti1WJ5RqBgvLUqYm7js0gfRlg5SCsbjab_kaoo8UUodGu8GszNohslIf3wKtabOd6I_QhQecjYd116kpn2-Hbz5MTyOwX6laqv-DUR33jmQzjuH365ZPp2zDcEcIN-eVHBqYzrzVSHqHU3X3aEZvKJRbSL3d3gcdXFNwImCLzNIDn7R9z4R0Imag8NG8vBxZEMSo2CkSvgRxMqFF4fEljAQm6UctMQS0XE3fEo4xqfTDaUjTzsU_UVtMVXIe9_bJ645XFOfMbC5EXZyAC1VsU78SagPXvaJcmQ5VyyZ9b0CnE7YlFgjS-Rjq5rZOv9179Pmk01LqjgnxDItAUZrGWhv5rlwimfZ4NCtJWWu6jMAi-di3UIB3oN0ujZz38TCq9s7JNu71mGDCaUTmO2k-hYQsnpl9MNf6Z6oXlX9LfqOZAz2mN2wvHhAOAvaRn3fxhZNuqnvaLl4a5FCgZTffvkeyM9pbXmLLGRa-9lD6iXigZgB4q9sVSKUiI2x7iXbA755Q3a1nMONNCTfYp-796A9_P-yK7HyBHomY6d-pStti-8tKbeylAokjmCH0RtKfXr65Mn6n7pKgfEpny70cpEVcW1-Q73XHCQY1OhLyJY0=w1263-h789-no?authuser=0)
+![Project Image](https://i.ibb.co/RSXdTMk/july-7.png)
+
+---
+
+## License
+
+MIT License
+
+Copyright (c) [2021] [Iván Muntian]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ---
 
