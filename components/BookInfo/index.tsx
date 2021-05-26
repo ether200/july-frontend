@@ -1,6 +1,6 @@
-import { useState } from "react";
 import Image from "next/image";
 import useSWR from "swr";
+import { useState } from "react";
 import { fetchWithToken } from "../../axios/userApi";
 import { useRouter } from "next/router";
 import { IconContext } from "react-icons";
@@ -18,7 +18,11 @@ type Props = {
 
 const BookInfo: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {
   const router = useRouter();
-  const { data: favBooks, isValidating, mutate } = useSWR<FavoriteBookI[]>(
+  const {
+    data: favBooks,
+    isValidating,
+    mutate,
+  } = useSWR<FavoriteBookI[]>(
     token ? [`/favorites?user=${userId}`, token] : null,
     fetchWithToken,
     {
@@ -26,10 +30,13 @@ const BookInfo: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {
       revalidateOnFocus: false,
     }
   );
+
+  // Check if current book is in favorite book list
   let currentFavBook = favBooks?.filter(
     (favBook) => favBook?.book?.id === book.id
   );
   let isFavorite = currentFavBook?.length;
+
   const [isItemOnCart, setIsItemOnCart] = useState<boolean>(
     isProductInCart(book.url)
   );
@@ -40,21 +47,26 @@ const BookInfo: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {
   };
 
   const favoriteHandler = async () => {
+    // If user is not logged, navigate to login page
     if (!token) {
       router.push("/login");
     } else if (isFavorite) {
+      // Mutate list firs then do the delete request
       mutate(
         favBooks.filter((item) => item.id !== currentFavBook[0].id),
         false
       );
       const status = await deleteFavoriteBook(currentFavBook[0].id);
       if (status === 200) {
+        // Revalidate
         mutate();
       }
     } else {
+      // Add to the fav book list
       mutate([...favBooks, { book: { id: book.id } }], false);
       const status = await addFavoriteBook(userId, book.id);
       if (status === 200) {
+        // Revalidate
         mutate();
       }
     }

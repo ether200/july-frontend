@@ -3,8 +3,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { updateUserInfo } from "../../../../axios/userApi";
 import { AccountSchema } from "../../../../yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import FormInput from "../../..//FormInput";
 import { UserI } from "../../../../intefaces";
+
+// Components
+import FormInput from "../../..//FormInput";
 
 export type AccountFormValues = {
   name?: string;

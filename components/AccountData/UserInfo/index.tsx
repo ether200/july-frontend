@@ -1,4 +1,6 @@
 import { UserI } from "../../../intefaces";
+
+// Components
 import EditUserForm from "./EditUserForm";
 
 type Props = {

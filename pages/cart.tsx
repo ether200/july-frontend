@@ -1,8 +1,10 @@
 import { GetServerSideProps } from "next";
 import { getSingleBook } from "../axios/bookApi";
-import { getCartServerSide, getTokenServerSide, getIdUser } from "../utils";
 import { getAddress } from "../axios/addressApi";
 import { BookI, AddressI } from "../intefaces";
+import { getCartServerSide, getTokenServerSide, getIdUser } from "../utils";
+
+// Components
 import Cart from "../components/Cart";
 import Empty from "../components/Empty";
 import Seo from "../components/SEO";
@@ -26,17 +28,21 @@ const CartPage: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {
   );
 };
 
+// Fetch for cart items on each request
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // cart is a string with all items separated with a comma
   const cart = getCartServerSide(context);
   const token = getTokenServerSide(context);
 
   if (cart) {
+    // if there's any item it's gonna fetch them singularly
     let cartItems = [];
     const cartArray = cart.split(",");
     for await (const product of cartArray) {
       const book = await getSingleBook(product);
       cartItems = [...cartItems, ...book];
     }
+    // it will check for an user token aswell, if there's any it will fetch for it's address
     if (token) {
       const userId = getIdUser(token);
       const addressInfo = await getAddress(token, userId);
@@ -49,6 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         },
       };
     }
+    // otherwise it'll just return the items without user info
     return {
       props: {
         cartItems,
@@ -58,6 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  // lastly if there's no items in the cart, it will return nothing, making the component render a message
   return {
     props: {
       cartItems: null,

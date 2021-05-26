@@ -1,11 +1,13 @@
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterSchema } from "../../../yup";
 import { registerUser } from "../../../axios/userApi";
+
+// Components
 import FormInput from "../../FormInput";
+import Link from "next/link";
 
 export type RegisterFormValues = {
   username: string;
@@ -37,6 +39,7 @@ const RegisterForm: React.FC = () => {
     const newUser = { username, name, lastName, email, password };
     const response = await registerUser(newUser);
     if (response?.status < 300) {
+      // Navigate to previous page
       router.push("/");
     } else {
       setError(response);

@@ -1,5 +1,7 @@
 import { getAboutInfo } from "../axios/aboutApi";
 import { AboutI } from "../intefaces";
+
+// Components
 import About from "../components/About";
 import Seo from "../components/SEO";
 
@@ -16,6 +18,7 @@ const AboutPage: React.FC<Props> = ({ content }) => {
   );
 };
 
+// Get about content from api on build time
 export const getStaticProps = async () => {
   const content = await getAboutInfo();
   return {

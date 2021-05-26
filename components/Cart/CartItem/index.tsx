@@ -8,6 +8,7 @@ const CartItem: React.FC<BookI> = ({ poster, title, author, price, url }) => {
 
   const onClickHandler = (slug: string) => {
     removeProductCart(slug);
+    // Reload
     router.replace(router.asPath);
   };
 

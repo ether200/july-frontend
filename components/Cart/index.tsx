@@ -1,4 +1,6 @@
 import { BookI, AddressI } from "../../intefaces";
+
+// Components
 import CartItem from "./CartItem";
 import Payment from "./Payment";
 
@@ -12,6 +14,7 @@ const Cart: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {
   const totalPrice = cartItems
     .reduce((acc, item) => acc + item.price, 0)
     .toFixed(2);
+
   return (
     <div className="cart-container">
       <h2>Your cart</h2>
@@ -27,6 +30,7 @@ const Cart: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {
           <h3>total: ${totalPrice}</h3>
         </div>
       </div>
+      {/* Only show <Payment /> if user is logged */}
       {userId && (
         <Payment
           cartItems={cartItems}

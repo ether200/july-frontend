@@ -1,5 +1,7 @@
 import { getTokenServerSide } from "../utils";
 import { GetServerSideProps } from "next";
+
+// Components
 import RegisterForm from "../components/Auth/RegisterForm";
 import Seo from "../components/SEO";
 
@@ -13,6 +15,7 @@ const register = () => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // Can't access this page if user is logged
   if (getTokenServerSide(context)) {
     return {
       redirect: {

@@ -1,6 +1,8 @@
 import { GetServerSideProps } from "next";
 import { BookI } from "../intefaces";
 import { searchForBooks } from "../axios/bookApi";
+
+// Components
 import ListBooks from "../components/ListBooks";
 import Empty from "../components/Empty";
 import Seo from "../components/SEO";
@@ -24,6 +26,7 @@ const search: React.FC<Props> = ({ books }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // Fetch for book on request using query search
   const query = context.query._q;
   const books = await searchForBooks(query);
   return {

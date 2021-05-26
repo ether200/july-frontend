@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { GetStaticProps } from "next";
-import { BookI } from "../intefaces";
 import { getBooksCount, getAllBooks } from "../axios/bookApi";
+import { BookI } from "../intefaces";
+
+// Components
 import ListBooks from "../components/ListBooks";
 import Empty from "../components/Empty";
 import Seo from "../components/SEO";
@@ -12,6 +14,7 @@ type Props = {
 };
 
 const Books: React.FC<Props> = ({ books, numberOfBooks }) => {
+  // Pass partial books to <listBooks /> to make use of pagination
   const [partialBooks, setPartialBooks] = useState(books.slice(0, 15));
 
   const changePartialBooks = (start: number, end: number) =>
@@ -33,6 +36,7 @@ const Books: React.FC<Props> = ({ books, numberOfBooks }) => {
   );
 };
 
+// Get all the books from api on build time
 export const getStaticProps: GetStaticProps = async () => {
   const numberOfBooks = await getBooksCount();
   const books = await getAllBooks();

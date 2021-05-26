@@ -1,7 +1,9 @@
-import { getTokenServerSide, getIdUser, getTokenClientSide } from "../utils";
 import useSWR from "swr";
+import { getTokenServerSide, getIdUser, getTokenClientSide } from "../utils";
 import { getFavoriteBooks, favBooksFetcher } from "../axios/favoriteApi";
 import { FavoriteBookI } from "../intefaces";
+
+// Components
 import ListBooks from "../components/ListBooks";
 import Empty from "../components/Empty";
 import Seo from "../components/SEO";
@@ -13,6 +15,7 @@ type Props = {
 
 const Wishlist: React.FC<Props> = ({ favoriteBooks, userId }) => {
   const jwt = getTokenClientSide();
+  // initialize swr with favoriteBooks to revalidate on view
   const { data: favBooks } = useSWR<FavoriteBookI[]>(
     [`/favorites?user=${userId}`, jwt],
     favBooksFetcher,
@@ -36,6 +39,7 @@ const Wishlist: React.FC<Props> = ({ favoriteBooks, userId }) => {
 };
 
 export const getServerSideProps = async (context) => {
+  // Can't access page if user is not logged
   const token = getTokenServerSide(context);
   if (!token) {
     return {
@@ -45,6 +49,8 @@ export const getServerSideProps = async (context) => {
       },
     };
   }
+
+  // Fetch for favoriteBooks
   const userId = getIdUser(token);
   const favoriteBooks = await getFavoriteBooks(token, userId);
 

@@ -1,6 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { BookI } from "../../../intefaces";
+import Image from "next/image";
 
 const BookCard: React.FC<BookI> = ({
   author,
@@ -8,28 +9,40 @@ const BookCard: React.FC<BookI> = ({
   url: slug,
   poster: url,
 }) => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const routerHandler = () => {
+    if (isLoading) return;
+    setIsLoading((loading) => !loading);
+    router.push(`/books/${slug}`);
+  };
+
   return (
-    <Link href={`/books/${slug}`}>
-      <a>
-        <div className="listGrid__card">
-          <Image
-            alt="book"
-            src={url.url}
-            layout="intrinsic"
-            width={300}
-            height={400}
-          />
-          <div className="listGrid__card__content">
-            <div className="listGrid__card__content__title">
-              <h4>{title}</h4>
-            </div>
-            <p>
-              by <span>{author}</span>
-            </p>
-          </div>
+    <div className="listGrid__card" onClick={routerHandler}>
+      <div
+        className={
+          isLoading ? "listGrid__card__modal" : "listGrid__card__modal--hidden"
+        }
+      >
+        <p>Loading...</p>
+      </div>
+      <Image
+        alt="book"
+        src={url.url}
+        layout="intrinsic"
+        width={300}
+        height={400}
+      />
+      <div className="listGrid__card__content">
+        <div className="listGrid__card__content__title">
+          <h4>{title}</h4>
         </div>
-      </a>
-    </Link>
+        <p>
+          by <span>{author}</span>
+        </p>
+      </div>
+    </div>
   );
 };
 

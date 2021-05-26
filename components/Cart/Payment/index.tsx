@@ -1,9 +1,12 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { BookI, AddressI } from "../../../intefaces";
+
+// Components
 import Link from "next/link";
 import PaymentForm from "./PaymentForm";
 
+// Initialize stripe
 const STRIPE_TOKEN = process.env.NEXT_PUBLIC_STRAPI_KEY;
 
 const stripePromise = loadStripe(STRIPE_TOKEN, {

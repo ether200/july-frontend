@@ -1,11 +1,13 @@
 import { useState } from "react";
-import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { loginUser } from "../../../axios/userApi";
 import { useRouter } from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "../../../yup";
+
+// Components
 import FormInput from "../../FormInput";
+import Link from "next/link";
 
 export type LogFormValues = {
   identifier: string;
@@ -25,6 +27,7 @@ const LoginForm: React.FC = () => {
     setLoading(true);
     const response = await loginUser(logFormValues);
     if (response?.status < 300) {
+      // Navigate to previous page
       router.back();
     } else {
       setError(response);

@@ -1,6 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from "react";
 import useSWR from "swr";
 import Link from "next/link";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { categoriesFetcher } from "../../axios/categoryApi";
 import { useRouter } from "next/router";
 import { IconContext } from "react-icons";
@@ -9,9 +9,14 @@ import { CategoryI } from "../../intefaces";
 
 const Navigation: React.FC = () => {
   const router = useRouter();
-  const { data } = useSWR<CategoryI[]>("/categories", categoriesFetcher, {
-    revalidateOnFocus: false,
-  });
+  // initialize categories
+  const { data: categories } = useSWR<CategoryI[]>(
+    "/categories",
+    categoriesFetcher,
+    {
+      revalidateOnFocus: false,
+    }
+  );
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -44,10 +49,10 @@ const Navigation: React.FC = () => {
               categories <FaCaretDown />
             </button>
             <div className="navbar__navigation__links__dropdown__content">
-              {!data ? (
+              {!categories ? (
                 <p>Loading...</p>
               ) : (
-                data.map((category) => (
+                categories.map((category) => (
                   <Link href={`/categories/${category.url}`} key={category.id}>
                     <a className="navbar__navigation__links__dropdown__content__link">
                       {category.title}

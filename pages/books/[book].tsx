@@ -1,11 +1,13 @@
-import { getSingleBook } from "../../axios/bookApi";
-import { getTokenServerSide, getIdUser } from "../../utils";
-import { getFavoriteBooks } from "../../axios/favoriteApi";
 import { GetServerSideProps } from "next";
+import { getTokenServerSide, getIdUser } from "../../utils";
+import { BookI, FavoriteBookI } from "../../intefaces";
+import { getSingleBook } from "../../axios/bookApi";
+import { getFavoriteBooks } from "../../axios/favoriteApi";
+
+// Components
 import BookInfo from "../../components/BookInfo";
 import Empty from "../../components/Empty";
 import Seo from "../../components/SEO";
-import { BookI, FavoriteBookI } from "../../intefaces";
 
 type Props = {
   book: BookI;
@@ -35,9 +37,11 @@ const BookPage: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const token = getTokenServerSide(context);
 
+  // Fetch single book
   const data = await getSingleBook(context.query.book);
   const book = data.length === 0 ? null : data[0];
 
+  // If user is logged, fetch for favorite books and return them along with user info
   if (token) {
     const userId = getIdUser(token);
     const favoriteBooks = await getFavoriteBooks(token, userId);

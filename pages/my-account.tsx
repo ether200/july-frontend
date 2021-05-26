@@ -1,11 +1,14 @@
 import useSWR from "swr";
 import { useState } from "react";
+import { GetServerSideProps } from "next";
 import { UserI, AddressI } from "../intefaces";
 import { getTokenServerSide, getTokenClientSide } from "../utils";
-import { GetServerSideProps } from "next";
+
 import { fetchWithToken } from "../axios/userApi";
 import { getMe } from "../axios/userApi";
 import { getAddress } from "../axios/addressApi";
+
+// Components
 import AddressForm from "../components/AccountData/AddressForm";
 import Modal from "../components/Modal";
 import Address from "../components/AccountData/Address";
@@ -20,6 +23,7 @@ type Props = {
 const MyAccount: React.FC<Props> = ({ user, address }) => {
   const jwt = getTokenClientSide();
 
+  // initialize useSWR with userData and addressData to mutate it through the components
   const { data: userData, mutate: mutateUser } = useSWR<UserI>(
     ["/users/me", jwt],
     fetchWithToken,
@@ -57,6 +61,7 @@ const MyAccount: React.FC<Props> = ({ user, address }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const token = getTokenServerSide(context);
+  // Can't access this page if the user is not logged
   if (!token) {
     return {
       redirect: {
@@ -65,6 +70,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
+  // Fetch for user info and address
   const userInfo = await getMe(token);
   const addressInfo = await getAddress(token, userInfo.id);
   return {
