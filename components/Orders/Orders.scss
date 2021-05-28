@@ -1,17 +1,25 @@
 .order {
-  padding: $padding-big-screen;
   text-align: center;
+  width: 100%;
+  background-color: $color-white-3;
 
-  @include MediaQuery(700px) {
-    padding: $padding-big-screen $padding-ms-screen;
+  h2 {
+    margin-top: 3rem;
   }
 
   &__grid {
     margin: 2rem 0;
+    padding: $padding-big-screen;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     justify-content: center;
     gap: 2rem;
+
+    @include CenterContainer();
+
+    @include MediaQuery(700px) {
+      padding: $padding-big-screen $padding-ms-screen;
+    }
 
     &__card {
       background-color: $color-dark;

@@ -1,56 +1,63 @@
-.listGrid {
-  padding: $padding-big-screen;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 30rem);
-  gap: 2rem;
-  justify-content: center;
+.list {
+  width: 100%;
+  background-color: $color-white-3;
 
-  @include MediaQuery(700px) {
-    padding: $padding-big-screen $padding-ms-screen;
-  }
+  &__grid {
+    padding: $padding-big-screen;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30rem);
+    gap: 2rem;
+    justify-content: center;
 
-  a {
-    color: $color-gray;
-  }
+    @include CenterContainer();
 
-  &__card {
-    padding: 1.5rem;
-    box-shadow: $light-shadow;
-    position: relative;
-    cursor: pointer;
-
-    &__modal {
-      position: absolute;
-      display: grid;
-      place-content: center;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-      top: 0;
-      left: 0;
-      z-index: 1;
-      color: $color-white;
-      font-weight: bold;
-
-      &--hidden {
-        display: none;
-      }
+    @include MediaQuery(700px) {
+      padding: $padding-big-screen $padding-ms-screen;
     }
 
-    &__content {
-      text-align: center;
+    a {
+      color: $color-gray;
+    }
 
-      &__title {
-        max-height: 4.5rem;
-        overflow: hidden;
-        margin: 1rem 0;
-        h4 {
-          font-weight: bold;
+    &__card {
+      padding: 1.5rem;
+      box-shadow: $light-shadow;
+      position: relative;
+      cursor: pointer;
+
+      &__modal {
+        position: absolute;
+        display: grid;
+        place-content: center;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        top: 0;
+        left: 0;
+        z-index: 1;
+        color: $color-white;
+        font-weight: bold;
+
+        &--hidden {
+          display: none;
         }
       }
 
-      span {
-        font-weight: bold;
+      &__content {
+        text-align: center;
+
+        &__title {
+          max-height: 4.5rem;
+          overflow: hidden;
+          margin: 1rem 0;
+          h4 {
+            font-weight: bold;
+          }
+        }
+
+        span {
+          font-weight: bold;
+        }
       }
     }
   }

@@ -11,10 +11,12 @@ type Props = {
 const ListBooks: React.FC<Props> = ({ books, numberOfBooks, changePage }) => {
   return (
     <>
-      <div className="listGrid">
-        {books.map((book) => (
-          <BookCard {...book} key={book.id} />
-        ))}
+      <div className="list">
+        <div className="list__grid">
+          {books.map((book) => (
+            <BookCard {...book} key={book.id} />
+          ))}
+        </div>
       </div>
       {numberOfBooks ? (
         <Pagination numberOfBooks={numberOfBooks} changePage={changePage} />

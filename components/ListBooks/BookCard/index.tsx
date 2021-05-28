@@ -19,10 +19,12 @@ const BookCard: React.FC<BookI> = ({
   };
 
   return (
-    <div className="listGrid__card" onClick={routerHandler}>
+    <div className="list__grid__card" onClick={routerHandler}>
       <div
         className={
-          isLoading ? "listGrid__card__modal" : "listGrid__card__modal--hidden"
+          isLoading
+            ? "list__grid__card__modal"
+            : "list__grid__card__modal--hidden"
         }
       >
         <p>Loading...</p>
@@ -34,8 +36,8 @@ const BookCard: React.FC<BookI> = ({
         width={300}
         height={400}
       />
-      <div className="listGrid__card__content">
-        <div className="listGrid__card__content__title">
+      <div className="list__grid__card__content">
+        <div className="list__grid__card__content__title">
           <h4>{title}</h4>
         </div>
         <p>
