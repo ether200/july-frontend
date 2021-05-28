@@ -75,59 +75,61 @@ const BookInfo: React.FC<Props> = ({ book, favoriteBooks, userId, token }) => {
   return (
     <IconContext.Provider value={{ size: "2rem" }}>
       <div className="bookInfo">
-        <div className="bookInfo__image">
-          <Image
-            alt="Book"
-            src={book.poster.url}
-            layout="intrinsic"
-            width={400}
-            height={600}
-          />
-        </div>
-        <div className="bookInfo__info">
-          <h1>{book.title}</h1>
-          <p className="bookInfo__info__author">
-            by {book.author} | {book.releaseDate}
-          </p>
-          <div className="bookInfo__info__price">
-            <h5>Price</h5>
-            <h3>${book.price}</h3>
-          </div>
-          <div className="bookInfo__info__btn-container">
-            {isItemOnCart ? (
-              <button className="btn btn--30p btn--disabled" disabled={true}>
-                <span className="btn__text btn__text--capitalize">
-                  <FiCheck /> This book is in your cart
-                </span>
-              </button>
-            ) : (
-              <button
-                className="btn btn--30p"
-                onClick={() => addBookToCart(book.url)}
-              >
-                <span className="btn__text btn__text--capitalize">
-                  <FiShoppingCart /> Add to Cart
-                </span>
-              </button>
-            )}
-            <button
-              className="btn btn--primary btn--30p"
-              onClick={favoriteHandler}
-              disabled={isValidating}
-            >
-              {" "}
-              <span className="btn__text btn__text--capitalize">
-                <FiHeart /> {isFavorite ? "remove" : "add to wish list"}
-              </span>
-            </button>
-          </div>
-          <div className="bookInfo__info__description">
-            <h2>Description</h2>
-
-            <div
-              className="bookInfo__info__description__content"
-              dangerouslySetInnerHTML={{ __html: book.summary }}
+        <div className="bookInfo__grid">
+          <div className="bookInfo__grid__image">
+            <Image
+              alt="Book"
+              src={book.poster.url}
+              layout="intrinsic"
+              width={400}
+              height={600}
             />
+          </div>
+          <div className="bookInfo__grid__info">
+            <h1>{book.title}</h1>
+            <p className="bookInfo__grid__info__author">
+              by {book.author} | {book.releaseDate}
+            </p>
+            <div className="bookInfo__grid__info__price">
+              <h5>Price</h5>
+              <h3>${book.price}</h3>
+            </div>
+            <div className="bookInfo__grid__info__btn-container">
+              {isItemOnCart ? (
+                <button className="btn btn--30p btn--disabled" disabled={true}>
+                  <span className="btn__text btn__text--capitalize">
+                    <FiCheck /> This book is in your cart
+                  </span>
+                </button>
+              ) : (
+                <button
+                  className="btn btn--30p"
+                  onClick={() => addBookToCart(book.url)}
+                >
+                  <span className="btn__text btn__text--capitalize">
+                    <FiShoppingCart /> Add to Cart
+                  </span>
+                </button>
+              )}
+              <button
+                className="btn btn--primary btn--30p"
+                onClick={favoriteHandler}
+                disabled={isValidating}
+              >
+                {" "}
+                <span className="btn__text btn__text--capitalize">
+                  <FiHeart /> {isFavorite ? "remove" : "add to wish list"}
+                </span>
+              </button>
+            </div>
+            <div className="bookInfo__grid__info__description">
+              <h2>Description</h2>
+
+              <div
+                className="bookInfo__grid__info__description__content"
+                dangerouslySetInnerHTML={{ __html: book.summary }}
+              />
+            </div>
           </div>
         </div>
       </div>
