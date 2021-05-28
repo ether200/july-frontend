@@ -69,18 +69,6 @@
   width: 100%;
   background-color: $primary;
 
-  @include MediaQuery(990px) {
-    grid-template-columns: 100%;
-
-    &__links {
-      grid-row: 3 / 4;
-    }
-  }
-
-  @include MediaQuery(700px) {
-    padding: 0.25rem $padding-ms-screen;
-  }
-
   &__grid {
     padding: 0.25rem $padding-big-screen;
     display: grid;
@@ -89,6 +77,19 @@
     align-items: center;
     justify-items: center;
     @include CenterContainer();
+
+    @include MediaQuery(990px) {
+      grid-template-columns: 100%;
+
+      &__links {
+        grid-row: 3 / 4;
+      }
+    }
+
+    @include MediaQuery(700px) {
+      padding: 0.25rem $padding-ms-screen;
+    }
+
     &__logo {
       h1 {
         color: $color-white;

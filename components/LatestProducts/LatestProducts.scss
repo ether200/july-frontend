@@ -1,18 +1,24 @@
 .latestProducts {
-  padding: $padding-big-screen;
+  width: 100%;
   background-color: $color-white-3;
-  text-align: center;
-  cursor: pointer;
 
-  @include MediaQuery(700px) {
-    padding: 3rem $padding-ms-screen;
-  }
+  &__center {
+    @include CenterContainer();
+    padding: $padding-big-screen;
 
-  &__card {
-    box-shadow: $light-shadow;
-  }
+    text-align: center;
 
-  h1 {
-    margin-bottom: 3rem;
+    @include MediaQuery(700px) {
+      padding: 3rem $padding-ms-screen;
+    }
+
+    h1 {
+      margin-bottom: 3rem;
+    }
+
+    &__card {
+      box-shadow: $light-shadow;
+      cursor: pointer;
+    }
   }
 }

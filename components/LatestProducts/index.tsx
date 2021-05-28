@@ -41,22 +41,24 @@ const LatestProducts: React.FC<Props> = ({ latestBooks }) => {
 
   return (
     <div className="latestProducts">
-      <h1>Latest Books</h1>
-      <Slider {...settings}>
-        {latestBooks.map((book) => (
-          <Link href={`/books/${book.url}`} key={book.id}>
-            <div className="latestProducts__card">
-              <Image
-                alt={book.title}
-                src={book.poster.url}
-                layout="fixed"
-                width={300}
-                height={450}
-              />
-            </div>
-          </Link>
-        ))}
-      </Slider>
+      <div className="latestProducts__center">
+        <h1>Latest Books</h1>
+        <Slider {...settings}>
+          {latestBooks.map((book) => (
+            <Link href={`/books/${book.url}`} key={book.id}>
+              <div className="latestProducts__center__card">
+                <Image
+                  alt={book.title}
+                  src={book.poster.url}
+                  layout="fixed"
+                  width={300}
+                  height={450}
+                />
+              </div>
+            </Link>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };
