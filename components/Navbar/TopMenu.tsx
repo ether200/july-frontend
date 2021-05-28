@@ -23,20 +23,20 @@ const TopMenu = () => {
   );
   return (
     <IconContext.Provider value={{ size: "1.6rem" }}>
-      <div className="navbar__topmenu">
-        <div className="navbar__topmenu__account">
+      <div className="topmenu">
+        <div className="topmenu__account">
           {!user && !isValidating ? (
-            <ul className="navbar__topmenu__account__list">
+            <ul className="topmenu__account__list">
               <li>
                 <Link href="/cart">
-                  <a className="navbar__topmenu__account__list__link">
+                  <a className="topmenu__account__list__link">
                     <FiShoppingCart /> Cart
                   </a>
                 </Link>
               </li>
               <li>
                 <Link href="/login">
-                  <a className="navbar__topmenu__account__list__link">
+                  <a className="topmenu__account__list__link">
                     <FiUser /> Sign up
                   </a>
                 </Link>
@@ -53,12 +53,12 @@ const TopMenu = () => {
 
 function LoggedMenu() {
   return (
-    <ul className="navbar__topmenu__account__list">
+    <ul className="topmenu__account__list">
       <li>
         <Link href="/my-account">
-          <a className="navbar__topmenu__account__list__link">
+          <a className="topmenu__account__list__link">
             <FiUser />{" "}
-            <span className="navbar__topmenu__account__list__link__text">
+            <span className="topmenu__account__list__link__text">
               My account
             </span>
           </a>
@@ -66,19 +66,17 @@ function LoggedMenu() {
       </li>
       <li>
         <Link href="/orders">
-          <a className="navbar__topmenu__account__list__link">
+          <a className="topmenu__account__list__link">
             <FiClipboard />{" "}
-            <span className="navbar__topmenu__account__list__link__text">
-              Orders
-            </span>
+            <span className="topmenu__account__list__link__text">Orders</span>
           </a>
         </Link>
       </li>
       <li>
         <Link href="/wishlist">
-          <a className="navbar__topmenu__account__list__link">
+          <a className="topmenu__account__list__link">
             <FiHeart />{" "}
-            <span className="navbar__topmenu__account__list__link__text">
+            <span className="topmenu__account__list__link__text">
               Wish list
             </span>
           </a>
@@ -86,27 +84,23 @@ function LoggedMenu() {
       </li>
       <li>
         <Link href="/cart">
-          <a className="navbar__topmenu__account__list__link">
+          <a className="topmenu__account__list__link">
             {" "}
             <FiShoppingCart />{" "}
-            <span className="navbar__topmenu__account__list__link__text">
-              Cart
-            </span>
+            <span className="topmenu__account__list__link__text">Cart</span>
           </a>
         </Link>
       </li>
       <li>
         <Link href={"/"} replace>
           <a
-            className="navbar__topmenu__account__list__link"
+            className="topmenu__account__list__link"
             onClick={() => {
               destroyCookie(null, "jwt");
             }}
           >
             <FiLogOut />{" "}
-            <span className="navbar__topmenu__account__list__link__text">
-              Log out
-            </span>
+            <span className="topmenu__account__list__link__text">Log out</span>
           </a>
         </Link>
       </li>

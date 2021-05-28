@@ -3,10 +3,10 @@ import TopMenu from "./TopMenu";
 
 const Navbar: React.FC = () => {
   return (
-    <div className="navbar">
+    <>
       <TopMenu />
       <Navigation />
-    </div>
+    </>
   );
 };
 
