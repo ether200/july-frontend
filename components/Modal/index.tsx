@@ -12,7 +12,7 @@ const Modal: React.FC<Props> = ({ children, isModalOpen, setIsModalOpen }) => {
 
   return createPortal(
     <div className="modal" onClick={() => setIsModalOpen(!isModalOpen)}>
-      {children}
+      <div className="modal__center">{children}</div>
     </div>,
     document.body
   );

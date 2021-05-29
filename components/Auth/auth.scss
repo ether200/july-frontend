@@ -6,6 +6,8 @@
   background-color: $color-white-2;
   padding: $padding-big-screen;
 
+  @include CenterContainer();
+
   @include MediaQuery(700px) {
     padding: $padding-big-screen $padding-ms-screen;
   }

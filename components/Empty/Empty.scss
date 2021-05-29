@@ -1,10 +1,17 @@
 .empty {
-  display: grid;
-  place-content: center;
   height: 100%;
-  padding: $padding-big-screen;
+  width: 100%;
 
-  @include MediaQuery(700px) {
-    padding: $padding-big-screen $padding-ms-screen;
+  &__center {
+    padding: $padding-big-screen;
+    display: grid;
+    place-content: center;
+    height: 100%;
+
+    @include CenterContainer();
+
+    @include MediaQuery(700px) {
+      padding: $padding-big-screen $padding-ms-screen;
+    }
   }
 }

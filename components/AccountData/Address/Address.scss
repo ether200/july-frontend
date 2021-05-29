@@ -1,57 +1,61 @@
 .address {
-  background-color: $color-white-2;
-  padding: 0 $padding-big-screen $padding-big-screen $padding-big-screen;
-  box-shadow: $light-shadow;
+  width: 100%;
   display: flex;
   height: 100%;
 
-  @include MediaQuery(700px) {
-    padding: 0 $padding-ms-screen $padding-big-screen $padding-ms-screen;
-  }
-
-  &__create {
+  &__center {
+    padding: 0 $padding-big-screen $padding-big-screen $padding-big-screen;
+    @include CenterContainer();
     align-self: center;
-    margin: 0 auto;
 
-    margin-top: 2.5rem;
-
-    button {
-      margin: 1.5rem auto;
-    }
-  }
-
-  &__info {
-    width: 35rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: $color-white-3;
-    padding: 2rem 0.5rem;
-    margin: auto;
-    border: 1px solid $color-white-3;
-    box-shadow: $light-shadow;
-
-    @include MediaQuery(831px) {
-      width: 100%;
+    @include MediaQuery(700px) {
+      padding: 0 $padding-ms-screen $padding-big-screen $padding-ms-screen;
     }
 
-    h2 {
-      grid-column: 1 / -1;
-      text-align: center;
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid $primary;
+    &__create {
+      align-self: center;
+      margin: 0 auto;
+
+      margin-top: 2.5rem;
+
+      button {
+        margin: 1.5rem auto;
+      }
     }
 
-    p:not(:last-child) {
-      margin-bottom: 0.5rem;
-    }
+    &__info {
+      width: 35rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: $color-white-3;
+      padding: 2rem 0.5rem;
+      margin: auto;
+      border: 1px solid $color-white-3;
+      box-shadow: $light-shadow;
 
-    p {
-      text-align: center;
-    }
+      @include MediaQuery(831px) {
+        width: 100%;
+      }
 
-    button {
-      margin-top: 1.5rem;
+      h2 {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        border-bottom: 1px solid $primary;
+      }
+
+      p:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      button {
+        margin-top: 1.5rem;
+      }
     }
   }
 }

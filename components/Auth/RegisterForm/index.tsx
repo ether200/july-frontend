@@ -48,75 +48,77 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="form">
-      <h2>Register your account</h2>
-      {error && <h5 className="error">{error}</h5>}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          id="username"
-          name="username"
-          type="text"
-          label="Username"
-          register={register}
-          errors={errors.username}
-        />
-        <FormInput
-          id="name"
-          name="name"
-          type="text"
-          label="Name"
-          register={register}
-          errors={errors.name}
-        />
-        <FormInput
-          id="lastName"
-          name="lastName"
-          type="text"
-          label="Last name"
-          register={register}
-          errors={errors.lastName}
-        />
-        <FormInput
-          id="email"
-          name="email"
-          type="text"
-          label="Email"
-          register={register}
-          errors={errors.email}
-        />
+    <div className="center">
+      <div className="form">
+        <h2>Register your account</h2>
+        {error && <h5 className="error">{error}</h5>}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormInput
+            id="username"
+            name="username"
+            type="text"
+            label="Username"
+            register={register}
+            errors={errors.username}
+          />
+          <FormInput
+            id="name"
+            name="name"
+            type="text"
+            label="Name"
+            register={register}
+            errors={errors.name}
+          />
+          <FormInput
+            id="lastName"
+            name="lastName"
+            type="text"
+            label="Last name"
+            register={register}
+            errors={errors.lastName}
+          />
+          <FormInput
+            id="email"
+            name="email"
+            type="text"
+            label="Email"
+            register={register}
+            errors={errors.email}
+          />
 
-        <FormInput
-          id="password"
-          name="password"
-          type="password"
-          label="Password"
-          register={register}
-          errors={errors.password}
-        />
+          <FormInput
+            id="password"
+            name="password"
+            type="password"
+            label="Password"
+            register={register}
+            errors={errors.password}
+          />
 
-        <FormInput
-          id="passwordConfirm"
-          name="passwordConfirm"
-          type="password"
-          label="Confirm Password"
-          register={register}
-          errors={errors.passwordConfirm}
-        />
+          <FormInput
+            id="passwordConfirm"
+            name="passwordConfirm"
+            type="password"
+            label="Confirm Password"
+            register={register}
+            errors={errors.passwordConfirm}
+          />
 
-        <button
-          className={!loading ? "btn" : "btn btn--loading"}
-          type="submit"
-          disabled={loading}
-        >
-          <span className="btn__text">register</span>
-        </button>
-        <p className="form__action">
-          Do you have an account?
-          <Link href="/login">
-            <a className="form__action__link">Log in</a>
-          </Link>
-        </p>
-      </form>
+          <button
+            className={!loading ? "btn" : "btn btn--loading"}
+            type="submit"
+            disabled={loading}
+          >
+            <span className="btn__text">register</span>
+          </button>
+          <p className="form__action">
+            Do you have an account?
+            <Link href="/login">
+              <a className="form__action__link">Log in</a>
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

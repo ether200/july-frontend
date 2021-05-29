@@ -7,7 +7,9 @@ type Props = {
 const Empty: React.FC<Props> = ({ message }) => {
   return (
     <div className="empty">
-      <h2>{message}</h2>
+      <div className="empty__center">
+        <h2>{message}</h2>
+      </div>
     </div>
   );
 };

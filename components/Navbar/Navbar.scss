@@ -208,6 +208,9 @@
         }
 
         button {
+          display: grid;
+          place-content: center;
+          position: relative;
           cursor: pointer;
           border: none;
           outline: none;

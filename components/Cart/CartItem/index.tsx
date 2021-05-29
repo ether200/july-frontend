@@ -13,8 +13,8 @@ const CartItem: React.FC<BookI> = ({ poster, title, author, price, url }) => {
   };
 
   return (
-    <div className="cart__item">
-      <div className="cart__item__image">
+    <div className="cart__center__grid__item">
+      <div className="cart__center__grid__item__image">
         <Image
           alt="Book Cover"
           src={poster.url}
@@ -23,12 +23,12 @@ const CartItem: React.FC<BookI> = ({ poster, title, author, price, url }) => {
           height={200}
         />
       </div>
-      <div className="cart__item__title">
+      <div className="cart__center__grid__item__title">
         <div>
           <h3>{title}</h3>
           <h3>By: {author}</h3>
         </div>
-        <div className="cart__item__title__btn-container">
+        <div className="cart__center__grid__item__title__btn-container">
           <button
             className="btn btn--primary btn--15p"
             onClick={() => onClickHandler(url)}
@@ -37,8 +37,8 @@ const CartItem: React.FC<BookI> = ({ poster, title, author, price, url }) => {
           </button>
         </div>
       </div>
-      <div className="cart__item__price">
-        <h3 className="cart__item__price__text">PRICE: </h3>
+      <div className="cart__center__grid__item__price">
+        <h3 className="cart__center__grid__item__price__text">PRICE: </h3>
         <h3>$ {price}</h3>
       </div>
     </div>

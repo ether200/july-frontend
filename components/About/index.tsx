@@ -16,12 +16,14 @@ const About: React.FC<Props> = ({ text }) => {
         />
       </div>
       <div className="about__content">
-        <div className="about__content__wrapper">
-          <h2>WHO WE ARE</h2>
-          <div
-            className="about__content__wrapper__text"
-            dangerouslySetInnerHTML={{ __html: text }}
-          />
+        <div className="about__content__center">
+          <div className="about__content__center__info">
+            <h2>WHO WE ARE</h2>
+            <div
+              className="about__content__center__info__text"
+              dangerouslySetInnerHTML={{ __html: text }}
+            />
+          </div>
         </div>
       </div>
     </div>

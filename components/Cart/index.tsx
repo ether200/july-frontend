@@ -16,29 +16,31 @@ const Cart: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {
     .toFixed(2);
 
   return (
-    <div className="cart-container">
-      <h2>Your cart</h2>
-      <div className="cart">
-        <div className="cart__firstRow">
-          <h3>Book</h3>
-          <h3>Price</h3>
+    <div className="cart">
+      <div className="cart__center">
+        <h2>Your cart</h2>
+        <div className="cart__center__grid">
+          <div className="cart__center__grid__firstRow">
+            <h3>Book</h3>
+            <h3>Price</h3>
+          </div>
+          {cartItems.map((item) => (
+            <CartItem key={item.id} {...item} />
+          ))}
+          <div className="cart__center__grid__lastRow">
+            <h3>total: ${totalPrice}</h3>
+          </div>
         </div>
-        {cartItems.map((item) => (
-          <CartItem key={item.id} {...item} />
-        ))}
-        <div className="cart__lastRow">
-          <h3>total: ${totalPrice}</h3>
-        </div>
+        {/* Only show <Payment /> if user is logged */}
+        {userId && (
+          <Payment
+            cartItems={cartItems}
+            addressInfo={addressInfo}
+            userId={userId}
+            totalPayment={+totalPrice}
+          />
+        )}
       </div>
-      {/* Only show <Payment /> if user is logged */}
-      {userId && (
-        <Payment
-          cartItems={cartItems}
-          addressInfo={addressInfo}
-          userId={userId}
-          totalPayment={+totalPrice}
-        />
-      )}
     </div>
   );
 };
