@@ -16,6 +16,7 @@ export type Props = {
 };
 
 const CartPage: React.FC<Props> = ({ cartItems, addressInfo, userId }) => {
+
   return (
     <>
       <Seo title="July | My Cart" />
@@ -36,13 +37,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (cart) {
     // if there's any item it's gonna fetch them singularly
-    let cartItems = [];
     const cartArray = cart.split(",");
-    for await (const product of cartArray) {
-      const book = await getSingleBook(product);
-      cartItems = [...cartItems, ...book];
-    }
-    // it will check for an user token aswell, if there's any it will fetch for it's address
+    const cartPromise = await Promise.all(cartArray.map(item => getSingleBook(item)));
+    const cartItems = cartPromise.map((cartItem) => {
+      return {...cartItem[0]}
+    });
     if (token) {
       const userId = getIdUser(token);
       const addressInfo = await getAddress(token, userId);

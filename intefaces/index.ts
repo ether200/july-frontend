@@ -63,3 +63,4 @@ export interface AboutI {
   id: string;
   text: string;
 }
+
